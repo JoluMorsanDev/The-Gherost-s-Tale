@@ -621,7 +621,6 @@ tile_data = PoolIntArray( 65535, 1, 0, 0, 1, 2, 131071, 1, 65536, 65536, 1, 6553
 color = Color( 0.027451, 0.172549, 0.290196, 1 )
 
 [node name="Torches" type="Node2D" parent="."]
-visible = false
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 1452.26, 243.261 )
@@ -647,6 +646,10 @@ position = Vector2( 640, 360 )
 current = true
 
 [node name="Uingame" parent="Camera2D" instance=ExtResource( 6 )]
+margin_left = -640.0
+margin_top = -360.0
+margin_right = -640.0
+margin_bottom = -360.0
 
 [node name="SpawnPos" type="Position2D" parent="."]
 position = Vector2( 455.569, 389.882 )
