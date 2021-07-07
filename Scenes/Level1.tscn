@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=104 format=2]
 
 [ext_resource path="res://Assets/Sprites/Tilemapground1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/BackgroundBricks.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Level1.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Uingame.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Anvorgentasma.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/AnvorgentasmaSaltarín.tscn" type="PackedScene" id=8]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -638,6 +640,12 @@ position = Vector2( 2694.59, 269.702 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="KinematicBody2D" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1123.97, 538.449 )
+
+[node name="KinematicBody2D2" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 997.915, 374.687 )
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 501.23, 196.146 )
 
@@ -653,3 +661,5 @@ margin_bottom = -360.0
 
 [node name="SpawnPos" type="Position2D" parent="."]
 position = Vector2( 455.569, 389.882 )
+
+[connection signal="hit" from="Player" to="." method="_on_Player_hit"]

@@ -1,30 +1,30 @@
 extends KinematicBody2D
 
 #Declare constants
-const aceleration = 5000
-const max_speed = 500
+const aceleration = 2500
+const max_speed = 250
 const friction = .20
-const gravity = 1200
-const jump_force = 900
+const gravity = 1600
+const jump_force = 600
 const air_friction = 0.02
 
 #Declare variables
 var motion = Vector2.ZERO
 onready var sprite = $AnimatedSprite
+var x_input = -1
 
-#Declare signals
-signal hit
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
-	var x_input = Input.get_action_strength("ui_right") -  Input.get_action_strength("ui_left")
+	if $Side.is_colliding():
+		x_input = -x_input
+		scale.x = -scale.x
 	
 	#if you are pressing one key, you move and your walking animation will play
 	if x_input != 0:
 		motion.x += x_input * aceleration * delta
 		motion.x = clamp(motion.x, -max_speed, max_speed)
 		$AnimatedSprite.playing = true
-		sprite.scale.x = x_input
 	if x_input == 0 or !is_on_floor():
 		$AnimatedSprite.playing = false
 		$AnimatedSprite.frame = 0
@@ -34,15 +34,12 @@ func _physics_process(delta):
 	
 	#If is touching the floor, and press up, your motion in y will be jump force, if you aren't pressing any key, you'll stop
 	if is_on_floor():
-		if x_input == 0:
-				motion.x = lerp(motion.x, 0, friction)
-		if Input.is_action_just_pressed("ui_up"):
+		if $Jumpside.is_colliding() and !$Jumpup.is_colliding():
 			motion.y = -jump_force
+		if !$Cliff.is_colliding():
+			x_input = -x_input
+			scale.x = -scale.x
 	else:
-# warning-ignore:integer_division
-		if Input.is_action_just_released("ui_up") and motion.y < -jump_force/2:
-# warning-ignore:integer_division
-			motion.y = -jump_force/2
 		if x_input == 0:
 			motion.x = lerp(motion.x, 0, air_friction)
 	
@@ -50,7 +47,3 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 	motion = move_and_slide(motion, Vector2.UP)
 
-#Inform that you got hit
-# warning-ignore:unused_argument
-func _on_DamageArea_body_entered(body):
-	emit_signal("hit")
