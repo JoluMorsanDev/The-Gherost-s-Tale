@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heartvoid.png-416cd2aecdfc9a928d81e775af309ae5.stex"
+path="res://.import/heart_hurt.png-4dd67f95e264ff4c88dda63d771e1973.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PlaceHolders/heartvoid.png"
-dest_files=[ "res://.import/heartvoid.png-416cd2aecdfc9a928d81e775af309ae5.stex" ]
+source_file="res://Assets/Sprites/PlaceHolders/heart_hurt.png"
+dest_files=[ "res://.import/heart_hurt.png-4dd67f95e264ff4c88dda63d771e1973.stex" ]
 
 [params]
 

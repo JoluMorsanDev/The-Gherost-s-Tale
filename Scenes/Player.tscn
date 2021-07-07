@@ -8,12 +8,10 @@
 blend_mode = 1
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 80, 0, 80, 90 )
 
