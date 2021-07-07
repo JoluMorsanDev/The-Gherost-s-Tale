@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/PlaceHolders/Player.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/PlaceHolders/PlayerLight.png" type="Texture" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
@@ -27,6 +28,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 20 )
 
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 1
+
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -40,3 +44,10 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -20 )
 shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+material = SubResource( 6 )
+position = Vector2( 0, -40 )
+texture = ExtResource( 3 )
+color = Color( 0.658824, 0.894118, 0.85098, 1 )
+energy = 2.0
