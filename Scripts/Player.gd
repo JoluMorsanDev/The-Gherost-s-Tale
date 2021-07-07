@@ -32,4 +32,4 @@ func _physics_process(delta):
 	
 	#move the player with motion vector
 # warning-ignore:return_value_discarded
-	motion = move_and_slide(motion)
+	motion = move_and_slide(motion, Vector2.UP)
