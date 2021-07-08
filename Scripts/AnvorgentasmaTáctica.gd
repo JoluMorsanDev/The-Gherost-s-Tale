@@ -13,7 +13,9 @@ var motion = Vector2.ZERO
 onready var sprite = $AnimatedSprite
 var x_input = -1
 export (PackedScene) var Quesontasma
+export (PackedScene) var Death
 var life = 3
+var inmunity = false
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -42,6 +44,7 @@ func _physics_process(delta):
 		if !$Cliff.is_colliding():
 			x_input = -x_input
 			scale.x = -scale.x
+			
 	else:
 		if x_input == 0:
 			motion.x = lerp(motion.x, 0, air_friction)
@@ -67,7 +70,25 @@ func _on_BulletTimer_timeout():
 
 # warning-ignore:unused_argument
 func _on_DamageArea_area_entered(area):
-	if life > 0:
+	if life > 1:
 		life -= 1
+# warning-ignore:integer_division
+		motion.y = -jump_force/2
+		motion.x = -motion.x
+		inmunity = true
+		$AnimatedSprite.modulate = Color(0, 0, 1, 1)
+		$DamageArea/CollisionShape2D.set_deferred("disabled", true)
+		$InmunityTimer.start()
 	else:
+		var dead = Death.instance()
+		get_parent().add_child(dead)
+		dead.scale.x = scale.x
+		dead.global_position.x = global_position.x
+		dead.global_position.y = global_position.y - 40
 		queue_free()
+
+
+func _on_InmunityTimer_timeout():
+	inmunity = false
+	$AnimatedSprite.modulate = Color(1, 1, 1, 1)
+	$DamageArea/CollisionShape2D.set_deferred("disabled", false)

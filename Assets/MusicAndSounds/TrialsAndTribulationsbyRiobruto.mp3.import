@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/TrialsAndTribulationsbyRiobruto.mp3-409e0770a7d643f118c389bee03c0ac5.mp3str"
+
+[deps]
+
+source_file="res://Assets/MusicAndSounds/TrialsAndTribulationsbyRiobruto.mp3"
+dest_files=[ "res://.import/TrialsAndTribulationsbyRiobruto.mp3-409e0770a7d643f118c389bee03c0ac5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

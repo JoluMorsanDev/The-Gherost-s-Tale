@@ -8,6 +8,7 @@ var shaking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.global_position = $SpawnPos.position
+	$Music/Music/LevelMusic.play()
 
 # warning-ignore:unused_argument
 func _process(delta):
@@ -32,6 +33,8 @@ func _process(delta):
 		if death == false:
 			death = true
 			yield(get_tree().create_timer(1),"timeout")
+			$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
+			get_tree().paused = false
 # warning-ignore:return_value_discarded
 			get_tree().reload_current_scene()
 	elif life > 3:
@@ -50,6 +53,7 @@ func _on_Player_hit():
 		$Camera2D/Uingame/Hearts/Heart1Base/Damage.play()
 		$Camera2D/Uingame/Hearts/Heart1Base/Damage.show()
 		life = 0
+	$Music/Sfx/HurtSfx.play()
 	$ScreenShakeTimer.start()
 	shaking = true
 	cameradown()
@@ -58,6 +62,7 @@ func _on_Player_hit():
 func _on_Player_heal():
 	if life < 3 and life > 0:
 		life += 1
+		$Music/Sfx/HealSfx.play()
 
 func _on_Player_coin():
 	coins += 1
@@ -65,21 +70,34 @@ func _on_Player_coin():
 
 func cameraup():
 	if shaking == true:
-		$Camera2D.global_position.y = 370
-		$Camera2D.global_rotation_degrees = 3
+		$Camera2D.global_position.y = 365
+		$Camera2D.global_rotation_degrees = 2
 		yield(get_tree().create_timer(0.1),"timeout")
 		cameradown()
 
 func cameradown():
 	if shaking == true:
-		$Camera2D.global_position.y = 350
-		$Camera2D.global_rotation_degrees = -3
+		$Camera2D.global_position.y = 355
+		$Camera2D.global_rotation_degrees = -2
 		yield(get_tree().create_timer(0.1),"timeout")
 		cameraup()
-
 
 func _on_ScreenShakeTimer_timeout():
 	shaking = false
 	$Camera2D.global_position.y = 360
 	$Camera2D.global_rotation_degrees = 0
 	$CanvasModulate.color = Color(.03, .17, .29, 1)
+
+func _on_Uingame_changesound():
+	if $Camera2D/Uingame/Pause/SoundButton/HSlider.value > -24:
+		AudioServer.set_bus_volume_db(1, $Camera2D/Uingame/Pause/SoundButton/HSlider.value)
+		AudioServer.set_bus_mute(1, false)
+	elif $Camera2D/Uingame/Pause/SoundButton/HSlider.value == -24:
+		AudioServer.set_bus_mute(1, true)
+
+func _on_Uingame_changesfx():
+	if $Camera2D/Uingame/Pause/SfxButton/HSlider.value > -24:
+		AudioServer.set_bus_volume_db(2, $Camera2D/Uingame/Pause/SfxButton/HSlider.value)
+		AudioServer.set_bus_mute(2, false)
+	elif $Camera2D/Uingame/Pause/SfxButton/HSlider.value == -24:
+		AudioServer.set_bus_mute(2, true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Sprites/PlaceHolders/heart_hurt.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/PlaceHolders/heartvoid.png" type="Texture" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://Scripts/Uingame.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/Sprites/moneda.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Buttons/Button1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Buttons/Button2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/SliderPick.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Buttons/Button6.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Slider.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Buttons/Button16.png" type="Texture" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -68,10 +74,324 @@ animations = [ {
 size = 96
 font_data = ExtResource( 5 )
 
+[sub_resource type="Animation" id=15]
+resource_name = "Pause"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PauseBackground:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, -2 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Coins:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 150 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 426, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Buttons/PausePlay:texture_disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Play"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PauseBackground:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, -2 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Coins:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 150 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 426, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Buttons/PausePlay:texture_disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 7 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SoundButton:pressed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SfxButton:pressed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=19]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=20]
+blend_mode = 1
+
+[sub_resource type="StyleBoxTexture" id=21]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 400, 40 )
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="Animation" id=24]
+resource_name = "Hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("HSlider:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HSlider:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HSlider:editable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "Show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("HSlider:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HSlider:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HSlider:editable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "Hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("HSlider:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HSlider:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HSlider:editable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "Show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("HSlider:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HSlider:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HSlider:editable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=17]
+blend_mode = 1
+
 [node name="Uingame" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseBackground" type="ColorRect" parent="."]
+pause_mode = 2
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.239216, 0.239216, 0.239216, 0.717647 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,8 +455,13 @@ material = SubResource( 2 )
 frames = SubResource( 7 )
 
 [node name="Pause" type="Control" parent="."]
-margin_right = 40.0
+pause_mode = 2
+margin_left = 426.0
+margin_right = 466.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Coins" type="Control" parent="Pause"]
 material = SubResource( 8 )
@@ -150,7 +475,7 @@ __meta__ = {
 use_parent_material = true
 position = Vector2( 84, 102 )
 frames = SubResource( 13 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Label" type="Label" parent="Pause/Coins"]
@@ -168,6 +493,122 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PauseBar" type="ColorRect" parent="Pause"]
+margin_left = -426.0
+margin_bottom = 720.0
+color = Color( 0.145098, 0.145098, 0.145098, 0.752941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause"]
+anims/Pause = SubResource( 15 )
+anims/Play = SubResource( 16 )
+
+[node name="SoundButton" type="TextureButton" parent="Pause"]
+pause_mode = 2
+material = SubResource( 19 )
+margin_left = -185.198
+margin_top = 528.337
+margin_right = -25.1978
+margin_bottom = 688.337
+toggle_mode = true
+texture_normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Pause/SoundButton"]
+visible = false
+material = SubResource( 20 )
+margin_left = 202.409
+margin_top = 63.9081
+margin_right = 602.409
+margin_bottom = 103.908
+rect_scale = Vector2( 1e-05, 1 )
+custom_icons/grabber_disabled = ExtResource( 9 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 9 )
+custom_styles/slider = SubResource( 21 )
+custom_styles/grabber_area_highlight = SubResource( 22 )
+custom_styles/grabber_area = SubResource( 23 )
+min_value = -24.0
+max_value = 0.0
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/SoundButton"]
+anims/Hide = SubResource( 24 )
+anims/Show = SubResource( 18 )
+
+[node name="SfxButton" type="TextureButton" parent="Pause"]
+pause_mode = 2
+material = SubResource( 19 )
+margin_left = -185.198
+margin_top = 346.337
+margin_right = -25.1978
+margin_bottom = 506.337
+toggle_mode = true
+texture_normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Pause/SfxButton"]
+visible = false
+material = SubResource( 20 )
+margin_left = 202.409
+margin_top = 63.9081
+margin_right = 602.409
+margin_bottom = 103.908
+rect_scale = Vector2( 1e-05, 1 )
+custom_icons/grabber_disabled = ExtResource( 9 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 9 )
+custom_styles/slider = SubResource( 21 )
+custom_styles/grabber_area_highlight = SubResource( 22 )
+custom_styles/grabber_area = SubResource( 23 )
+min_value = -24.0
+max_value = 0.0
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/SfxButton"]
+anims/Hide = SubResource( 25 )
+anims/Show = SubResource( 26 )
+
+[node name="Buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PausePlay" type="TextureButton" parent="Buttons"]
+pause_mode = 2
+material = SubResource( 17 )
+margin_left = 32.3163
+margin_top = 15.7349
+margin_right = 192.316
+margin_bottom = 175.735
+toggle_mode = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_disabled = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="animation_finished" from="Hearts/Heart1Base/Damage" to="." method="_on_Damage_animation_finished"]
 [connection signal="animation_finished" from="Hearts/Heart2Base/Damage" to="." method="_on_Damage_animation_finished2"]
 [connection signal="animation_finished" from="Hearts/Heart3Base/Damage" to="." method="_on_Damage_animation_finished3"]
+[connection signal="animation_finished" from="Pause/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="toggled" from="Pause/SoundButton" to="." method="_on_SoundButton_toggled"]
+[connection signal="value_changed" from="Pause/SoundButton/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="toggled" from="Pause/SfxButton" to="." method="_on_SfxButton_toggled"]
+[connection signal="value_changed" from="Pause/SfxButton/HSlider" to="." method="_on_HSlider_value_changedsfx"]
+[connection signal="toggled" from="Buttons/PausePlay" to="." method="_on_PausePlay_toggled"]
