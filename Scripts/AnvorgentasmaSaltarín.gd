@@ -12,7 +12,7 @@ const air_friction = 0.02
 var motion = Vector2.ZERO
 onready var sprite = $AnimatedSprite
 var x_input = -1
-
+var life = 2
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -43,3 +43,9 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 	motion = move_and_slide(motion, Vector2.UP)
 
+# warning-ignore:unused_argument
+func _on_DamageArea_area_entered(area):
+	if life > 0:
+		life -= 1
+	else:
+		queue_free()

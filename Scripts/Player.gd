@@ -11,9 +11,12 @@ const air_friction = 0.02
 #Declare variables
 var motion = Vector2.ZERO
 onready var sprite = $AnimatedSprite
+export (PackedScene) var Claws
+var claws_cooldown = false
 
 #Declare signals
 signal hit
+signal heal
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -28,6 +31,8 @@ func _physics_process(delta):
 	if x_input == 0 or !is_on_floor():
 		$AnimatedSprite.playing = false
 		$AnimatedSprite.frame = 0
+	if claws_cooldown == true:
+		get_node("claws").scale.x = sprite.scale.x
 	
 	#Put the vector motion y axis in gravity
 	motion.y += gravity * delta
@@ -45,6 +50,15 @@ func _physics_process(delta):
 			motion.y = -jump_force/2
 		if x_input == 0:
 			motion.x = lerp(motion.x, 0, air_friction)
+			
+	if Input.is_action_just_pressed("claws") and claws_cooldown == false:
+		claws_cooldown = true
+		$ClawsCooldown.start()
+		var claws = Claws.instance()
+		add_child(claws)
+		claws.name = "claws"
+		claws.scale.x = sprite.scale.x
+		$AnimatedSprite.hide()
 	
 	#move the player with motion vector
 # warning-ignore:return_value_discarded
@@ -54,3 +68,11 @@ func _physics_process(delta):
 # warning-ignore:unused_argument
 func _on_DamageArea_body_entered(body):
 	emit_signal("hit")
+
+func _on_ClawsCooldown_timeout():
+	get_node("claws").queue_free()
+	claws_cooldown = false
+	$AnimatedSprite.show()
+
+func _on_HealArea_area_entered(area):
+	emit_signal("heal")

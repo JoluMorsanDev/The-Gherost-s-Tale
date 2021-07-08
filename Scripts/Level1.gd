@@ -1,6 +1,7 @@
 extends Node2D
 
 var life = 3
+var death = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,8 +28,11 @@ func _process(delta):
 		$Camera2D/Uingame/Hearts/Heart1Base/Heart.hide()
 		$Camera2D/Uingame/Hearts/Heart2Base/Heart.hide()
 		$Camera2D/Uingame/Hearts/Heart3Base/Heart.hide()
-		yield(get_tree().create_timer(1),"timeout")
-		life = 3
+		if death == false:
+			death = true
+			yield(get_tree().create_timer(1),"timeout")
+# warning-ignore:return_value_discarded
+			get_tree().reload_current_scene()
 	elif life > 3:
 		life = 3
 
@@ -45,3 +49,7 @@ func _on_Player_hit():
 		$Camera2D/Uingame/Hearts/Heart1Base/Damage.play()
 		$Camera2D/Uingame/Hearts/Heart1Base/Damage.show()
 		life = 0
+
+func _on_Player_heal():
+	if life < 3 and life > 0:
+		life += 1

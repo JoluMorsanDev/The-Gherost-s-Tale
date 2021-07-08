@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CampFire_Base.png-e75eea3436c36cdbf6093d24d07a5587.stex"
+path="res://.import/quesontasma.png-864e49fa2d76584880a78be41178db50.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/CampFire_Base.png"
-dest_files=[ "res://.import/CampFire_Base.png-e75eea3436c36cdbf6093d24d07a5587.stex" ]
+source_file="res://Assets/Sprites/quesontasma.png"
+dest_files=[ "res://.import/quesontasma.png-864e49fa2d76584880a78be41178db50.stex" ]
 
 [params]
 

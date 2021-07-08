@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CampFire_Base.png-e75eea3436c36cdbf6093d24d07a5587.stex"
+path="res://.import/Hamborguetasma2.png-26941ec7c7d41a4c725824cc02a61887.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/CampFire_Base.png"
-dest_files=[ "res://.import/CampFire_Base.png-e75eea3436c36cdbf6093d24d07a5587.stex" ]
+source_file="res://Assets/Sprites/Hamborguetasma2.png"
+dest_files=[ "res://.import/Hamborguetasma2.png-26941ec7c7d41a4c725824cc02a61887.stex" ]
 
 [params]
 
