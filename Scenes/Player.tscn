@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Player_Idle.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/PlaceHolders/PlayerLight.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Claws.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sprites/Player_hit.png" type="Texture" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -16,12 +17,25 @@ region = Rect2( 0, 0, 80, 90 )
 atlas = ExtResource( 2 )
 region = Rect2( 80, 0, 80, 90 )
 
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 80, 90 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 80, 90 )
+
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "inmunity",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -74,13 +88,29 @@ collision_mask = 64
 position = Vector2( 0, -30 )
 shape = SubResource( 10 )
 
+[node name="CoinArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinArea"]
+position = Vector2( 0, -30 )
+shape = SubResource( 10 )
+
 [node name="ClawsCooldown" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
 
 [node name="HealTimer" type="Timer" parent="."]
 
+[node name="InmunityTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
 [connection signal="area_entered" from="HealArea" to="." method="_on_HealArea_area_entered"]
+[connection signal="area_exited" from="HealArea" to="." method="_on_HealArea_area_exited"]
+[connection signal="area_entered" from="CoinArea" to="." method="_on_CoinArea_area_entered"]
 [connection signal="timeout" from="ClawsCooldown" to="." method="_on_ClawsCooldown_timeout"]
+[connection signal="timeout" from="HealTimer" to="." method="_on_HealTimer_timeout"]
+[connection signal="timeout" from="InmunityTimer" to="." method="_on_InmunityTimer_timeout"]

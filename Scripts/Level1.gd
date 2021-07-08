@@ -2,7 +2,8 @@ extends Node2D
 
 var life = 3
 var death = false
-
+var coins = 0
+var shaking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,7 +50,36 @@ func _on_Player_hit():
 		$Camera2D/Uingame/Hearts/Heart1Base/Damage.play()
 		$Camera2D/Uingame/Hearts/Heart1Base/Damage.show()
 		life = 0
+	$ScreenShakeTimer.start()
+	shaking = true
+	cameradown()
+	$CanvasModulate.color = Color(.9, .15, .15, 1)
 
 func _on_Player_heal():
 	if life < 3 and life > 0:
 		life += 1
+
+func _on_Player_coin():
+	coins += 1
+	$Camera2D/Uingame/Pause/Coins/Label.text = str(coins)
+
+func cameraup():
+	if shaking == true:
+		$Camera2D.global_position.y = 370
+		$Camera2D.global_rotation_degrees = 3
+		yield(get_tree().create_timer(0.1),"timeout")
+		cameradown()
+
+func cameradown():
+	if shaking == true:
+		$Camera2D.global_position.y = 350
+		$Camera2D.global_rotation_degrees = -3
+		yield(get_tree().create_timer(0.1),"timeout")
+		cameraup()
+
+
+func _on_ScreenShakeTimer_timeout():
+	shaking = false
+	$Camera2D.global_position.y = 360
+	$Camera2D.global_rotation_degrees = 0
+	$CanvasModulate.color = Color(.03, .17, .29, 1)

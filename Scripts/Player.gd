@@ -13,10 +13,12 @@ var motion = Vector2.ZERO
 onready var sprite = $AnimatedSprite
 export (PackedScene) var Claws
 var claws_cooldown = false
+var inmunity = false
 
 #Declare signals
 signal hit
 signal heal
+signal coin
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -29,8 +31,11 @@ func _physics_process(delta):
 		$AnimatedSprite.playing = true
 		sprite.scale.x = x_input
 	if x_input == 0 or !is_on_floor():
-		$AnimatedSprite.playing = false
-		$AnimatedSprite.frame = 0
+		if inmunity == false:
+			$AnimatedSprite.playing = false
+			$AnimatedSprite.frame = 0
+		else:
+			$AnimatedSprite.playing = true
 	if claws_cooldown == true:
 		get_node("claws").scale.x = sprite.scale.x
 	
@@ -51,7 +56,7 @@ func _physics_process(delta):
 		if x_input == 0:
 			motion.x = lerp(motion.x, 0, air_friction)
 			
-	if Input.is_action_just_pressed("claws") and claws_cooldown == false:
+	if Input.is_action_just_pressed("claws") and claws_cooldown == false and inmunity == false:
 		claws_cooldown = true
 		$ClawsCooldown.start()
 		var claws = Claws.instance()
@@ -67,12 +72,40 @@ func _physics_process(delta):
 #Inform that you got hit
 # warning-ignore:unused_argument
 func _on_DamageArea_body_entered(body):
-	emit_signal("hit")
+	if inmunity == false:
+		emit_signal("hit")
+		inmunity = true
+		$InmunityTimer.start()
+		$AnimatedSprite.animation = "inmunity"
+		motion.x = -motion.x
+# warning-ignore:integer_division
+		motion.y = -jump_force/3
+		if claws_cooldown == true:
+			get_node("claws").queue_free()
+			$ClawsCooldown.stop()
+			claws_cooldown = false
+			$AnimatedSprite.show()
 
 func _on_ClawsCooldown_timeout():
 	get_node("claws").queue_free()
 	claws_cooldown = false
 	$AnimatedSprite.show()
 
+# warning-ignore:unused_argument
 func _on_HealArea_area_entered(area):
+	$HealTimer.start()
+
+func _on_HealTimer_timeout():
 	emit_signal("heal")
+
+# warning-ignore:unused_argument
+func _on_HealArea_area_exited(area):
+	$HealTimer.stop()
+
+func _on_InmunityTimer_timeout():
+	inmunity = false
+	$AnimatedSprite.animation = "default"
+
+# warning-ignore:unused_argument
+func _on_CoinArea_area_entered(area):
+	emit_signal("coin")
