@@ -19,6 +19,7 @@ var inmunity = false
 signal hit
 signal heal
 signal coin
+signal fall
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -109,3 +110,7 @@ func _on_InmunityTimer_timeout():
 # warning-ignore:unused_argument
 func _on_CoinArea_area_entered(area):
 	emit_signal("coin")
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	emit_signal("fall")

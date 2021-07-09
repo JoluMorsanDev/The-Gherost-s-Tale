@@ -105,6 +105,8 @@ one_shot = true
 wait_time = 0.75
 one_shot = true
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
 [connection signal="area_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
 [connection signal="area_entered" from="HealArea" to="." method="_on_HealArea_area_entered"]
@@ -113,3 +115,4 @@ one_shot = true
 [connection signal="timeout" from="ClawsCooldown" to="." method="_on_ClawsCooldown_timeout"]
 [connection signal="timeout" from="HealTimer" to="." method="_on_HealTimer_timeout"]
 [connection signal="timeout" from="InmunityTimer" to="." method="_on_InmunityTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

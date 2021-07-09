@@ -31,12 +31,13 @@ func _process(delta):
 		$Camera2D/Uingame/Hearts/Heart2Base/Heart.hide()
 		$Camera2D/Uingame/Hearts/Heart3Base/Heart.hide()
 		if death == false:
+			$Music/Music/LevelMusic.stop()
 			death = true
 			yield(get_tree().create_timer(1),"timeout")
 			$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
 			get_tree().paused = false
 # warning-ignore:return_value_discarded
-			get_tree().reload_current_scene()
+			get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	elif life > 3:
 		life = 3
 
@@ -101,3 +102,22 @@ func _on_Uingame_changesfx():
 		AudioServer.set_bus_mute(2, false)
 	elif $Camera2D/Uingame/Pause/SfxButton/HSlider.value == -24:
 		AudioServer.set_bus_mute(2, true)
+
+func _on_Uingame_home():
+	$Music/Music/LevelMusic.stop()
+	death = true
+	$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
+	get_tree().paused = false
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
+
+func _on_Player_fall():
+	$Music/Sfx/HurtSfx.play()
+	$Music/Music/LevelMusic.stop()
+	death = true
+	yield(get_tree().create_timer(1),"timeout")
+	$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
+	get_tree().paused = false
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")

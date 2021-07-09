@@ -5,49 +5,49 @@
 [ext_resource path="res://Assets/Sprites/TorchLight.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/ParticlesLight.png" type="Texture" id=4]
 
-[sub_resource type="CanvasItemMaterial" id=11]
+[sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
-region = Rect2( 80, 0, 80, 80 )
+region = Rect2( 0, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
-region = Rect2( 160, 0, 80, 80 )
+region = Rect2( 80, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
-region = Rect2( 240, 0, 80, 80 )
+region = Rect2( 160, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
-region = Rect2( 320, 0, 80, 80 )
+region = Rect2( 240, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
-region = Rect2( 400, 0, 80, 80 )
+region = Rect2( 320, 0, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
+region = Rect2( 400, 0, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
 region = Rect2( 480, 0, 80, 80 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 7.0
 } ]
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=11]
 blend_mode = 1
 
 [node name="Torch" type="Light2D"]
@@ -57,21 +57,20 @@ color = Color( 0.466667, 0.772549, 0.701961, 1 )
 shadow_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 11 )
+material = SubResource( 1 )
 position = Vector2( 0, 5 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 1 )
+material = SubResource( 2 )
 position = Vector2( 0, 5 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 9 )
-frame = 6
+frames = SubResource( 10 )
 playing = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-material = SubResource( 10 )
+material = SubResource( 11 )
 scale = Vector2( 0.1, 0.1 )
 amount = 3
 lifetime = 5.0

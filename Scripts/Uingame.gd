@@ -9,6 +9,7 @@ var fullsfx = load("res://Assets/Sprites/Buttons/Button6.png")
 
 signal changesound
 signal changesfx
+signal home
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -92,3 +93,6 @@ func _on_HSlider_value_changedsfx(value):
 		$Pause/SfxButton.texture_normal = midsfx
 	elif $Pause/SfxButton/HSlider.value == -24:
 		$Pause/SfxButton.texture_normal = nonsfx
+
+func _on_Home_pressed():
+	emit_signal("home")

@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene3.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene5.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene7.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene8.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene9.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/CutscenePictures/cutscene6.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Scripts/IntroCutScene.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Nueva Animación"
+length = 32.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 4, 4.5, 8, 8.5, 12, 12.5, 16, 16.5, 20, 20.5, 24, 24.5, 28, 28.6, 32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 4, 4.5, 8, 8.5, 12, 12.5, 16, 16.5, 20, 20.5, 24, 24.5, 28, 28.6, 32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "
+", "Once upon a time in a distant kingdom", "", "The great hero kitty was living", "", "But in his most epic and dangerous battle", "", "He hurted severely", "", "And with his heroic imprudence", "", "He passesd away", "", "Now he ended in the gluttony dead world", "", "And his last adventure started", "" ]
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 195.0
+margin_top = 562.0
+margin_right = 1138.0
+margin_bottom = 693.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.886275, 0.980392, 0.937255, 1 )
+text = "The great hero kitty was living"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Nueva Animación"
+"anims/Nueva Animación" = SubResource( 1 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

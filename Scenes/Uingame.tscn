@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Assets/Sprites/PlaceHolders/heart_hurt.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/PlaceHolders/heartvoid.png" type="Texture" id=2]
@@ -12,70 +12,70 @@
 [ext_resource path="res://Assets/Sprites/Buttons/Button6.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/Slider.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/Buttons/Button16.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Buttons/Button3.png" type="Texture" id=13]
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 120, 120 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 120, 0, 120, 120 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 240, 0, 120, 120 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 360, 0, 120, 120 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "default",
 "speed": 7.5
 } ]
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=12]
 blend_mode = 1
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 80, 90 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 6 )
 region = Rect2( 80, 0, 80, 90 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 6 )
 region = Rect2( 160, 0, 80, 90 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 6 )
 region = Rect2( 240, 0, 80, 90 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "default",
 "speed": 8.0
 } ]
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=18]
 size = 96
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=15]
-resource_name = "Pause"
+[sub_resource type="Animation" id=19]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("../PauseBackground:visible")
@@ -126,8 +126,7 @@ tracks/3/keys = {
 "values": [ ExtResource( 8 ), ExtResource( 8 ) ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "Play"
+[sub_resource type="Animation" id=20]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("../PauseBackground:visible")
@@ -202,22 +201,21 @@ tracks/5/keys = {
 "values": [ false, false ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=19]
+[sub_resource type="CanvasItemMaterial" id=21]
 blend_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=20]
+[sub_resource type="CanvasItemMaterial" id=22]
 blend_mode = 1
 
-[sub_resource type="StyleBoxTexture" id=21]
+[sub_resource type="StyleBoxTexture" id=23]
 texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 400, 40 )
 
-[sub_resource type="StyleBoxEmpty" id=22]
+[sub_resource type="StyleBoxEmpty" id=24]
 
-[sub_resource type="StyleBoxEmpty" id=23]
+[sub_resource type="StyleBoxEmpty" id=25]
 
-[sub_resource type="Animation" id=24]
-resource_name = "Hide"
+[sub_resource type="Animation" id=26]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("HSlider:visible")
@@ -256,8 +254,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=18]
-resource_name = "Show"
+[sub_resource type="Animation" id=27]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("HSlider:visible")
@@ -296,8 +293,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=25]
-resource_name = "Hide"
+[sub_resource type="Animation" id=28]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("HSlider:visible")
@@ -336,8 +332,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=26]
-resource_name = "Show"
+[sub_resource type="Animation" id=29]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("HSlider:visible")
@@ -376,7 +371,10 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=17]
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=30]
 blend_mode = 1
 
 [node name="Uingame" type="Control"]
@@ -404,7 +402,7 @@ __meta__ = {
 }
 
 [node name="Heart1Base" type="Sprite" parent="Hearts"]
-material = SubResource( 1 )
+material = SubResource( 5 )
 position = Vector2( 1161.97, 65.6867 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -412,16 +410,16 @@ __meta__ = {
 }
 
 [node name="Heart" type="Sprite" parent="Hearts/Heart1Base"]
-material = SubResource( 1 )
+material = SubResource( 5 )
 texture = ExtResource( 3 )
 
 [node name="Damage" type="AnimatedSprite" parent="Hearts/Heart1Base"]
 visible = false
-material = SubResource( 2 )
-frames = SubResource( 7 )
+material = SubResource( 6 )
+frames = SubResource( 11 )
 
 [node name="Heart2Base" type="Sprite" parent="Hearts"]
-material = SubResource( 1 )
+material = SubResource( 5 )
 position = Vector2( 1096.97, 130.74 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -429,16 +427,16 @@ __meta__ = {
 }
 
 [node name="Heart" type="Sprite" parent="Hearts/Heart2Base"]
-material = SubResource( 1 )
+material = SubResource( 5 )
 texture = ExtResource( 3 )
 
 [node name="Damage" type="AnimatedSprite" parent="Hearts/Heart2Base"]
 visible = false
-material = SubResource( 2 )
-frames = SubResource( 7 )
+material = SubResource( 6 )
+frames = SubResource( 11 )
 
 [node name="Heart3Base" type="Sprite" parent="Hearts"]
-material = SubResource( 1 )
+material = SubResource( 5 )
 position = Vector2( 1189.01, 157.538 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -446,13 +444,13 @@ __meta__ = {
 }
 
 [node name="Heart" type="Sprite" parent="Hearts/Heart3Base"]
-material = SubResource( 1 )
+material = SubResource( 5 )
 texture = ExtResource( 3 )
 
 [node name="Damage" type="AnimatedSprite" parent="Hearts/Heart3Base"]
 visible = false
-material = SubResource( 2 )
-frames = SubResource( 7 )
+material = SubResource( 6 )
+frames = SubResource( 11 )
 
 [node name="Pause" type="Control" parent="."]
 pause_mode = 2
@@ -464,7 +462,7 @@ __meta__ = {
 }
 
 [node name="Coins" type="Control" parent="Pause"]
-material = SubResource( 8 )
+material = SubResource( 12 )
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -474,7 +472,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pause/Coins"]
 use_parent_material = true
 position = Vector2( 84, 102 )
-frames = SubResource( 13 )
+frames = SubResource( 17 )
 frame = 3
 playing = true
 
@@ -484,7 +482,7 @@ margin_left = 137.0
 margin_top = 59.0
 margin_right = 185.0
 margin_bottom = 123.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 18 )
 custom_colors/font_color = Color( 0.533333, 0.772549, 0.717647, 1 )
 text = "0"
 align = 1
@@ -502,12 +500,12 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pause"]
-anims/Pause = SubResource( 15 )
-anims/Play = SubResource( 16 )
+anims/Pause = SubResource( 19 )
+anims/Play = SubResource( 20 )
 
 [node name="SoundButton" type="TextureButton" parent="Pause"]
 pause_mode = 2
-material = SubResource( 19 )
+material = SubResource( 21 )
 margin_left = -185.198
 margin_top = 528.337
 margin_right = -25.1978
@@ -520,7 +518,7 @@ __meta__ = {
 
 [node name="HSlider" type="HSlider" parent="Pause/SoundButton"]
 visible = false
-material = SubResource( 20 )
+material = SubResource( 22 )
 margin_left = 202.409
 margin_top = 63.9081
 margin_right = 602.409
@@ -529,9 +527,9 @@ rect_scale = Vector2( 1e-05, 1 )
 custom_icons/grabber_disabled = ExtResource( 9 )
 custom_icons/grabber_highlight = ExtResource( 9 )
 custom_icons/grabber = ExtResource( 9 )
-custom_styles/slider = SubResource( 21 )
-custom_styles/grabber_area_highlight = SubResource( 22 )
-custom_styles/grabber_area = SubResource( 23 )
+custom_styles/slider = SubResource( 23 )
+custom_styles/grabber_area_highlight = SubResource( 24 )
+custom_styles/grabber_area = SubResource( 25 )
 min_value = -24.0
 max_value = 0.0
 editable = false
@@ -540,12 +538,12 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/SoundButton"]
-anims/Hide = SubResource( 24 )
-anims/Show = SubResource( 18 )
+anims/Hide = SubResource( 26 )
+anims/Show = SubResource( 27 )
 
 [node name="SfxButton" type="TextureButton" parent="Pause"]
 pause_mode = 2
-material = SubResource( 19 )
+material = SubResource( 21 )
 margin_left = -185.198
 margin_top = 346.337
 margin_right = -25.1978
@@ -558,7 +556,7 @@ __meta__ = {
 
 [node name="HSlider" type="HSlider" parent="Pause/SfxButton"]
 visible = false
-material = SubResource( 20 )
+material = SubResource( 22 )
 margin_left = 202.409
 margin_top = 63.9081
 margin_right = 602.409
@@ -567,9 +565,9 @@ rect_scale = Vector2( 1e-05, 1 )
 custom_icons/grabber_disabled = ExtResource( 9 )
 custom_icons/grabber_highlight = ExtResource( 9 )
 custom_icons/grabber = ExtResource( 9 )
-custom_styles/slider = SubResource( 21 )
-custom_styles/grabber_area_highlight = SubResource( 22 )
-custom_styles/grabber_area = SubResource( 23 )
+custom_styles/slider = SubResource( 23 )
+custom_styles/grabber_area_highlight = SubResource( 24 )
+custom_styles/grabber_area = SubResource( 25 )
 min_value = -24.0
 max_value = 0.0
 editable = false
@@ -578,8 +576,19 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/SfxButton"]
-anims/Hide = SubResource( 25 )
-anims/Show = SubResource( 26 )
+anims/Hide = SubResource( 28 )
+anims/Show = SubResource( 29 )
+
+[node name="Home" type="TextureButton" parent="Pause"]
+material = SubResource( 4 )
+margin_left = -384.945
+margin_top = 528.337
+margin_right = -224.945
+margin_bottom = 688.337
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Buttons" type="Control" parent="."]
 margin_right = 40.0
@@ -590,7 +599,7 @@ __meta__ = {
 
 [node name="PausePlay" type="TextureButton" parent="Buttons"]
 pause_mode = 2
-material = SubResource( 17 )
+material = SubResource( 30 )
 margin_left = 32.3163
 margin_top = 15.7349
 margin_right = 192.316
@@ -611,4 +620,5 @@ __meta__ = {
 [connection signal="value_changed" from="Pause/SoundButton/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="toggled" from="Pause/SfxButton" to="." method="_on_SfxButton_toggled"]
 [connection signal="value_changed" from="Pause/SfxButton/HSlider" to="." method="_on_HSlider_value_changedsfx"]
+[connection signal="pressed" from="Pause/Home" to="." method="_on_Home_pressed"]
 [connection signal="toggled" from="Buttons/PausePlay" to="." method="_on_PausePlay_toggled"]
