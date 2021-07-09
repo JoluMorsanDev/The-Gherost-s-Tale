@@ -139,5 +139,6 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Buttons/Exit" to="." method="_on_Exit_pressed"]

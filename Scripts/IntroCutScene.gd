@@ -12,7 +12,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 # warning-ignore:unused_argument
 func _process(delta):
-	if Input.action_press("claws"):
+	if Input.is_action_pressed("claws"):
 		exit()
 
 func exit():
