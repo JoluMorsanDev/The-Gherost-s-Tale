@@ -7,17 +7,17 @@
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/MusicAndSounds/WelcomeToTheCastlebySleider.wav" type="AudioStream" id=6]
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=100]
 blend_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="CanvasItemMaterial" id=101]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=99]
 size = 192
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=30]
 size = 96
 font_data = ExtResource( 5 )
 
@@ -61,7 +61,7 @@ __meta__ = {
 }
 
 [node name="Back" type="TextureButton" parent="Buttons"]
-material = SubResource( 3 )
+material = SubResource( 100 )
 margin_left = 36.0
 margin_top = 36.0
 margin_right = 196.0
@@ -77,11 +77,11 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="Label" type="Label" parent="Labels"]
-material = SubResource( 4 )
+material = SubResource( 101 )
 margin_left = 360.0
 margin_right = 984.0
 margin_bottom = 128.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 99 )
 custom_colors/font_color = Color( 0.729412, 0.964706, 0.952941, 1 )
 text = "Credits"
 __meta__ = {
@@ -89,12 +89,12 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Labels"]
-material = SubResource( 4 )
+material = SubResource( 101 )
 margin_left = 232.294
 margin_top = 158.702
 margin_right = 856.294
 margin_bottom = 289.702
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 30 )
 custom_colors/font_color = Color( 0.545098, 0.517647, 0.913725, 1 )
 text = "Developmet By:
 Jolumorsandev"
@@ -104,12 +104,12 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Labels"]
-material = SubResource( 4 )
+material = SubResource( 101 )
 margin_left = 622.487
 margin_top = 403.515
 margin_right = 1246.49
 margin_bottom = 668.515
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 30 )
 custom_colors/font_color = Color( 0.864216, 0.517647, 0.913725, 1 )
 text = "Sprites By:
 Jolumorsandev
@@ -121,12 +121,12 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="Labels"]
-material = SubResource( 4 )
+material = SubResource( 101 )
 margin_left = 177.434
 margin_top = 339.567
 margin_right = 537.434
 margin_bottom = 537.567
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 30 )
 custom_colors/font_color = Color( 0.890196, 0.913725, 0.517647, 1 )
 text = "Music By:
 Riobruto

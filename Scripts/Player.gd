@@ -134,6 +134,12 @@ func movement_block_win():
 	$CoinArea/CollisionShape2D.set_deferred("disabled", true)
 	movement = false
 
+func movement_block():
+	$DamageArea/CollisionShape2D.set_deferred("disabled", true)
+	$HealArea/CollisionShape2D.set_deferred("disabled", true)
+	$CoinArea/CollisionShape2D.set_deferred("disabled", true)
+	movement = false
+
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "death":
 		hide()

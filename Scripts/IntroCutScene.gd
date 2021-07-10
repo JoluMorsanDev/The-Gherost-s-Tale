@@ -4,6 +4,9 @@ var start = false
 
 func _ready():
 	$AnimationPlayer.play("Nueva Animación")
+	MusicSingletone.change_music_volume()
+	MusicSingletone.change_sfx_volume()
+	
 
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):

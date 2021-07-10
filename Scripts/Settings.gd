@@ -50,3 +50,8 @@ func _on_HSlider_value_changedsfx(value):
 		$Buttons/SfxButton.texture_normal = nonsfx
 	MusicSingletone.sfxvolume = $Buttons/SfxButton/HSlider.value
 	MusicSingletone.change_sfx_volume()
+
+
+func _on_DeleteDataButton_pressed():
+	MusicSingletone.earse_data()
+	get_tree().quit()

@@ -68,3 +68,13 @@ func load_sfx_volume():
 		file.close()
 	else:
 		sfxvolume = 0
+
+func earse_data():
+	var file = File.new()
+	file.open(volumemusicfile, File.WRITE)
+	file.store_var(0)
+	file.close()
+	var file2 = File.new()
+	file2.open(volumesfxfile, File.WRITE)
+	file2.store_var(0)
+	file2.close()

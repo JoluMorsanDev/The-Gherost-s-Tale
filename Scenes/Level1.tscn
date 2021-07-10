@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://Assets/Sprites/Tilemapground1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/BackgroundBricks.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/MusicAndSounds/PurgatoriumPlainsbyRiobruto.mp3" type="AudioStream" id=12]
 [ext_resource path="res://Assets/MusicAndSounds/heal.wav" type="AudioStream" id=13]
 [ext_resource path="res://Assets/MusicAndSounds/hit.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -608,6 +609,70 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 [sub_resource type="RectangleShape2D" id=96]
 extents = Vector2( 2517.3, 167.452 )
 
+[sub_resource type="CanvasItemMaterial" id=97]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=98]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=99]
+size = 192
+font_data = ExtResource( 15 )
+
+[sub_resource type="Animation" id=100]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0509804, 0.054902, 1 ), Color( 0.0470588, 0.0509804, 0.054902, 0 ) ]
+}
+
+[sub_resource type="Animation" id=101]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0509804, 0.054902, 0 ), Color( 0.0470588, 0.0509804, 0.054902, 1 ) ]
+}
+
 [node name="Level1" type="Node2D"]
 script = ExtResource( 5 )
 
@@ -722,6 +787,23 @@ bus = "Sfx"
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 501.23, 196.146 )
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 131072
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 3145.31, 968 )
+scale = Vector2( 1.52, 1 )
+shape = SubResource( 96 )
+
+[node name="SpawnPos" type="Position2D" parent="."]
+position = Vector2( 455.569, 389.882 )
+
+[node name="ScreenShakeTimer" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 0.533
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 380 )
 current = true
@@ -732,28 +814,51 @@ margin_top = -360.0
 margin_right = -640.0
 margin_bottom = -360.0
 
-[node name="SpawnPos" type="Position2D" parent="."]
-position = Vector2( 455.569, 389.882 )
-
-[node name="ScreenShakeTimer" type="Timer" parent="."]
+[node name="MessageScreen" type="Control" parent="Camera2D"]
 pause_mode = 2
-wait_time = 0.533
-one_shot = true
+margin_left = -640.0
+margin_top = -380.0
+margin_right = -600.0
+margin_bottom = -340.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 131072
-collision_mask = 131072
+[node name="ColorRect" type="ColorRect" parent="Camera2D/MessageScreen"]
+material = SubResource( 97 )
+margin_right = 1280.0
+margin_bottom = 780.0
+color = Color( 0.0470588, 0.0509804, 0.054902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 3145.31, 968 )
-scale = Vector2( 1.52, 1 )
-shape = SubResource( 96 )
+[node name="Message" type="Label" parent="Camera2D/MessageScreen"]
+material = SubResource( 98 )
+margin_left = 351.973
+margin_top = 277.729
+margin_right = 980.973
+margin_bottom = 405.729
+custom_fonts/font = SubResource( 99 )
+custom_colors/font_color = Color( 0.745098, 0.921569, 0.913725, 1 )
+text = "Level 1"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/MessageScreen"]
+pause_mode = 2
+anims/hide = SubResource( 100 )
+anims/show = SubResource( 101 )
 
 [connection signal="coin" from="Player" to="." method="_on_Player_coin"]
 [connection signal="fall" from="Player" to="." method="_on_Player_fall"]
 [connection signal="heal" from="Player" to="." method="_on_Player_heal"]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
+[connection signal="timeout" from="ScreenShakeTimer" to="." method="_on_ScreenShakeTimer_timeout"]
 [connection signal="changesfx" from="Camera2D/Uingame" to="." method="_on_Uingame_changesfx"]
 [connection signal="changesound" from="Camera2D/Uingame" to="." method="_on_Uingame_changesound"]
 [connection signal="home" from="Camera2D/Uingame" to="." method="_on_Uingame_home"]
-[connection signal="timeout" from="ScreenShakeTimer" to="." method="_on_ScreenShakeTimer_timeout"]

@@ -8,11 +8,14 @@ var shaking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Player.global_position = $SpawnPos.position
+	get_node_or_null("Player").global_position = $SpawnPos.position
+	$Camera2D/MessageScreen/Message.text = "Level 1"
 	$Music/Music/LevelMusic.play()
 	$Camera2D/Uingame/Pause/SfxButton/HSlider.value = MusicSingletone.sfxvolume
 	$Camera2D/Uingame/Pause/SoundButton/HSlider.value = MusicSingletone.musicvolume
 	$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
+	$Camera2D/Uingame/Pause/LevelMessage.text = "Lvl 1"
+	show_level()
 
 # warning-ignore:unused_argument
 func _process(delta):
@@ -22,11 +25,11 @@ func _process(delta):
 		if wining == false:
 			$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
 			wining = true
-			$Player.movement_block_win()
-			yield(get_tree().create_timer(3),"timeout")
+			get_node_or_null("Player").movement_block_win()
+			yield(get_tree().create_timer(1),"timeout")
 			win()
-	if $Player.global_position.x > 640 and $Player.global_position.x < 5900:
-		$Camera2D.global_position.x = $Player.global_position.x
+	if get_node_or_null("Player").global_position.x > 640 and get_node_or_null("Player").global_position.x < 5900:
+		$Camera2D.global_position.x = get_node_or_null("Player").global_position.x
 	if life == 3:
 		$Camera2D/Uingame/Hearts/Heart1Base/Heart.show()
 		$Camera2D/Uingame/Hearts/Heart2Base/Heart.show()
@@ -46,7 +49,7 @@ func _process(delta):
 		if death == false:
 			$Music/Music/LevelMusic.stop()
 			death = true
-			$Player.movement_block_loss()
+			get_node_or_null("Player").movement_block_loss()
 			yield(get_tree().create_timer(1),"timeout")
 			game_over()
 	elif life > 3:
@@ -119,6 +122,7 @@ func _on_Uingame_home():
 
 func _on_Player_fall():
 	if wining == false and death == false:
+		get_node_or_null("Player").movement_block()
 		$Music/Sfx/HurtSfx.play()
 		$Music/Music/LevelMusic.stop()
 		shaking = true
@@ -134,13 +138,28 @@ func _on_Player_fall():
 		game_over()
 
 func game_over():
-	$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
+	$Camera2D/MessageScreen.rect_scale.x = 1
+	$Camera2D/MessageScreen/Message.text = "Game\nover"
+	$Camera2D/MessageScreen/AnimationPlayer.play("show")
+	get_tree().paused = true
+	yield(get_tree().create_timer(2),"timeout")
 	get_tree().paused = false
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func win():
-	$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
+	$Camera2D/MessageScreen.rect_scale.x = 1
+	$Camera2D/MessageScreen/Message.text = "Level\nwon"
+	$Camera2D/MessageScreen/AnimationPlayer.play("show")
+	get_tree().paused = true
+	yield(get_tree().create_timer(2),"timeout")
 	get_tree().paused = false
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
+func show_level():
+	get_tree().paused = true
+	yield(get_tree().create_timer(1),"timeout")
+	get_tree().paused = false
+	$Camera2D/MessageScreen/AnimationPlayer.play("hide")
+	$Camera2D/MessageScreen.rect_scale.x = 0
