@@ -62,7 +62,7 @@ func _on_DamageArea_area_entered(area):
 		$InmunityTimer.start()
 	else:
 		var dead = Death.instance()
-		get_parent().add_child(dead)
+		get_parent().get_parent().add_child(dead)
 		dead.scale.x = scale.x
 		dead.global_position.x = global_position.x
 		dead.global_position.y = global_position.y - 40
@@ -72,3 +72,8 @@ func _on_InmunityTimer_timeout():
 	inmunity = false
 	$AnimatedSprite.modulate = Color(1, 1, 1, 1)
 	$DamageArea/CollisionShape2D.set_deferred("disabled", false)
+
+
+# warning-ignore:unused_argument
+func _on_FallArea_area_entered(area):
+	queue_free()

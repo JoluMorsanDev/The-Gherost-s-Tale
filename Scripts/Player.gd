@@ -14,6 +14,7 @@ onready var sprite = $AnimatedSprite
 export (PackedScene) var Claws
 var claws_cooldown = false
 var inmunity = false
+var movement = true
 
 #Declare signals
 signal hit
@@ -68,7 +69,8 @@ func _physics_process(delta):
 	
 	#move the player with motion vector
 # warning-ignore:return_value_discarded
-	motion = move_and_slide(motion, Vector2.UP)
+	if movement == true:
+		motion = move_and_slide(motion, Vector2.UP)
 
 #Inform that you got hit
 # warning-ignore:unused_argument
@@ -114,3 +116,24 @@ func _on_CoinArea_area_entered(area):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	emit_signal("fall")
+
+func movement_block_loss():
+	$AnimatedSprite.animation = "death"
+	$Light2D.enabled = false
+	$DamageArea/CollisionShape2D.set_deferred("disabled", true)
+	$HealArea/CollisionShape2D.set_deferred("disabled", true)
+	$CoinArea/CollisionShape2D.set_deferred("disabled", true)
+	movement = false
+
+func movement_block_win():
+	$AnimatedSprite.position.y = -70
+	$AnimatedSprite.animation = "win"
+	$AnimatedSprite.playing = true
+	$DamageArea/CollisionShape2D.set_deferred("disabled", true)
+	$HealArea/CollisionShape2D.set_deferred("disabled", true)
+	$CoinArea/CollisionShape2D.set_deferred("disabled", true)
+	movement = false
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "death":
+		hide()

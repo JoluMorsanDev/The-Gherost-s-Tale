@@ -2,6 +2,7 @@ extends Node2D
 
 var life = 3
 var death = false
+var wining = false
 var coins = 0
 var shaking = false
 
@@ -9,10 +10,22 @@ var shaking = false
 func _ready():
 	$Player.global_position = $SpawnPos.position
 	$Music/Music/LevelMusic.play()
+	$Camera2D/Uingame/Pause/SfxButton/HSlider.value = MusicSingletone.sfxvolume
+	$Camera2D/Uingame/Pause/SoundButton/HSlider.value = MusicSingletone.musicvolume
+	$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
 
 # warning-ignore:unused_argument
 func _process(delta):
-	if $Player.global_position.x > 640:
+	if $Enemies.get_child_count() > 0:
+		$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
+	if $Enemies.get_child_count() == 0:
+		if wining == false:
+			$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
+			wining = true
+			$Player.movement_block_win()
+			yield(get_tree().create_timer(3),"timeout")
+			win()
+	if $Player.global_position.x > 640 and $Player.global_position.x < 5900:
 		$Camera2D.global_position.x = $Player.global_position.x
 	if life == 3:
 		$Camera2D/Uingame/Hearts/Heart1Base/Heart.show()
@@ -33,11 +46,9 @@ func _process(delta):
 		if death == false:
 			$Music/Music/LevelMusic.stop()
 			death = true
+			$Player.movement_block_loss()
 			yield(get_tree().create_timer(1),"timeout")
-			$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
-			get_tree().paused = false
-# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://Scenes/MainMenu.tscn")
+			game_over()
 	elif life > 3:
 		life = 3
 
@@ -90,18 +101,12 @@ func _on_ScreenShakeTimer_timeout():
 	$CanvasModulate.color = Color(.03, .17, .29, 1)
 
 func _on_Uingame_changesound():
-	if $Camera2D/Uingame/Pause/SoundButton/HSlider.value > -24:
-		AudioServer.set_bus_volume_db(1, $Camera2D/Uingame/Pause/SoundButton/HSlider.value)
-		AudioServer.set_bus_mute(1, false)
-	elif $Camera2D/Uingame/Pause/SoundButton/HSlider.value == -24:
-		AudioServer.set_bus_mute(1, true)
+	MusicSingletone.musicvolume =$Camera2D/Uingame/Pause/SoundButton/HSlider.value 
+	MusicSingletone.change_music_volume()
 
 func _on_Uingame_changesfx():
-	if $Camera2D/Uingame/Pause/SfxButton/HSlider.value > -24:
-		AudioServer.set_bus_volume_db(2, $Camera2D/Uingame/Pause/SfxButton/HSlider.value)
-		AudioServer.set_bus_mute(2, false)
-	elif $Camera2D/Uingame/Pause/SfxButton/HSlider.value == -24:
-		AudioServer.set_bus_mute(2, true)
+	MusicSingletone.sfxvolume =$Camera2D/Uingame/Pause/SfxButton/HSlider.value
+	MusicSingletone.change_sfx_volume()
 
 func _on_Uingame_home():
 	$Music/Music/LevelMusic.stop()
@@ -113,10 +118,28 @@ func _on_Uingame_home():
 
 
 func _on_Player_fall():
-	$Music/Sfx/HurtSfx.play()
-	$Music/Music/LevelMusic.stop()
-	death = true
-	yield(get_tree().create_timer(1),"timeout")
+	if wining == false and death == false:
+		$Music/Sfx/HurtSfx.play()
+		$Music/Music/LevelMusic.stop()
+		shaking = true
+		cameradown()
+		$CanvasModulate.color = Color(.9, .15, .15, 1)
+		death = true
+		yield(get_tree().create_timer(0.533),"timeout")
+		shaking = false
+		$Camera2D.global_position.y = 360
+		$Camera2D.global_rotation_degrees = 0
+		$CanvasModulate.color = Color(.03, .17, .29, 1)
+		yield(get_tree().create_timer(0.467),"timeout")
+		game_over()
+
+func game_over():
+	$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
+	get_tree().paused = false
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
+func win():
 	$Camera2D/Uingame/Pause/AnimationPlayer.play("Play")
 	get_tree().paused = false
 # warning-ignore:return_value_discarded

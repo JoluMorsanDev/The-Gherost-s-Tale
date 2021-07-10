@@ -7,8 +7,9 @@ var nonsfx = load("res://Assets/Sprites/Buttons/Button4.png")
 var midsfx = load("res://Assets/Sprites/Buttons/Button5.png")
 var fullsfx = load("res://Assets/Sprites/Buttons/Button6.png")
 
-signal changesound
-signal changesfx
+func _ready():
+	$Buttons/SoundButton/HSlider.value = MusicSingletone.musicvolume
+	$Buttons/SfxButton/HSlider.value = MusicSingletone.sfxvolume
 
 func _on_Back_pressed():
 # warning-ignore:return_value_discarded
@@ -32,8 +33,20 @@ func _on_SfxButton_toggled(button_pressed):
 func _on_HSlider_value_changed(value):
 	if $Buttons/SoundButton/HSlider.value == 0:
 		$Buttons/SoundButton.texture_normal = fullsound
-	emit_signal("changesound")
+	elif $Buttons/SoundButton/HSlider.value < 0 and $Buttons/SoundButton/HSlider.value > -24:
+		$Buttons/SoundButton.texture_normal = midsound
+	elif $Buttons/SoundButton/HSlider.value == -24:
+		$Buttons/SoundButton.texture_normal = nonsound
+	MusicSingletone.musicvolume = $Buttons/SoundButton/HSlider.value
+	MusicSingletone.change_music_volume()
 
 # warning-ignore:unused_argument
 func _on_HSlider_value_changedsfx(value):
-	emit_signal("changesfx")
+	if $Buttons/SfxButton/HSlider.value == 0:
+		$Buttons/SfxButton.texture_normal = fullsfx
+	elif $Buttons/SfxButton/HSlider.value < 0 and $Buttons/SfxButton/HSlider.value > -24:
+		$Buttons/SfxButton.texture_normal = midsfx
+	elif $Buttons/SfxButton/HSlider.value == -24:
+		$Buttons/SfxButton.texture_normal = nonsfx
+	MusicSingletone.sfxvolume = $Buttons/SfxButton/HSlider.value
+	MusicSingletone.change_sfx_volume()

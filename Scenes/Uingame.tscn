@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Assets/Sprites/PlaceHolders/heart_hurt.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/PlaceHolders/heartvoid.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Sprites/Slider.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/Buttons/Button16.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/Buttons/Button3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Hamborguetasma.png" type="Texture" id=14]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -75,6 +76,12 @@ animations = [ {
 size = 96
 font_data = ExtResource( 5 )
 
+[sub_resource type="CanvasItemMaterial" id=28]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=29]
+blend_mode = 1
+
 [sub_resource type="Animation" id=15]
 length = 0.5
 tracks/0/type = "value"
@@ -124,6 +131,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( -2, -2 ),
 "update": 1,
 "values": [ ExtResource( 8 ), ExtResource( 8 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("EnemiesLeft:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 150 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -199,6 +218,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("EnemiesLeft:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.001, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 150 ) ]
 }
 
 [sub_resource type="CanvasItemMaterial" id=17]
@@ -473,7 +504,6 @@ __meta__ = {
 use_parent_material = true
 position = Vector2( 84, 102 )
 frames = SubResource( 13 )
-frame = 2
 playing = true
 
 [node name="Label" type="Label" parent="Pause/Coins"]
@@ -482,6 +512,35 @@ margin_left = 137.0
 margin_top = 59.0
 margin_right = 185.0
 margin_bottom = 123.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.533333, 0.772549, 0.717647, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemiesLeft" type="Control" parent="Pause"]
+material = SubResource( 28 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="Sprite" parent="Pause/EnemiesLeft"]
+material = SubResource( 29 )
+position = Vector2( 83.9052, 221.749 )
+texture = ExtResource( 14 )
+hframes = 2
+
+[node name="Label" type="Label" parent="Pause/EnemiesLeft"]
+use_parent_material = true
+margin_left = 139.119
+margin_top = 178.719
+margin_right = 187.119
+margin_bottom = 242.719
 custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0.533333, 0.772549, 0.717647, 1 )
 text = "0"
@@ -607,7 +666,7 @@ margin_bottom = 175.735
 toggle_mode = true
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
-texture_disabled = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

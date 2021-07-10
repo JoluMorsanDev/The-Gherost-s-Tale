@@ -12,12 +12,11 @@
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Scripts/IntroCutScene.gd" type="Script" id=11]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 96
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Nueva Animación"
+[sub_resource type="Animation" id=2]
 length = 32.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:texture")
@@ -51,7 +50,7 @@ script = ExtResource( 11 )
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,9 +60,10 @@ margin_left = 195.0
 margin_top = 562.0
 margin_right = 1138.0
 margin_bottom = 693.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.886275, 0.980392, 0.937255, 1 )
-text = "The great hero kitty was living"
+text = "
+"
 align = 1
 valign = 1
 autowrap = true
@@ -73,6 +73,6 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Nueva Animación"
-"anims/Nueva Animación" = SubResource( 1 )
+"anims/Nueva Animación" = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

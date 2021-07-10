@@ -16,10 +16,11 @@ export (PackedScene) var Quesontasma
 export (PackedScene) var Death
 var life = 3
 var inmunity = false
+var stop = false
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
-	if $Side.is_colliding():
+	if $Side.is_colliding() and stop == false:
 		x_input = -x_input
 		scale.x = -scale.x
 	
@@ -39,9 +40,9 @@ func _physics_process(delta):
 	if is_on_floor():
 		if x_input == 0:
 				motion.x = lerp(motion.x, 0, friction)
-		if $Jumpside.is_colliding() and !$Jumpup.is_colliding():
+		if $Jumpside.is_colliding() and !$Jumpup.is_colliding() and stop == false:
 			motion.y = -jump_force
-		if !$Cliff.is_colliding():
+		if !$Cliff.is_colliding() and stop == false:
 			x_input = -x_input
 			scale.x = -scale.x
 			
@@ -56,17 +57,30 @@ func _physics_process(delta):
 
 
 func _on_BulletTimer_timeout():
-	var last_motion = x_input
-	var quesontasma = Quesontasma.instance()
-	x_input = 0
-	yield(get_tree().create_timer(0.5),"timeout")
-	get_parent().add_child(quesontasma)
-	quesontasma.direction = last_motion
-	quesontasma.global_position.y = global_position.y - 40
-	quesontasma.global_position.x = global_position.x + 60 * last_motion
-	yield(get_tree().create_timer(0.5),"timeout")
-	x_input = last_motion
-	$BulletTimer.start()
+	if $Cliff.is_colliding() and !$Side.is_colliding():
+		stop = true
+		$Side.set_deferred("enabled", false)
+		$Cliff.set_deferred("enabled", false)
+		$Jumpside.set_deferred("enabled", false)
+		$Jumpup.set_deferred("enabled", false)
+		var last_motion = x_input
+		var quesontasma = Quesontasma.instance()
+		x_input = 0
+		yield(get_tree().create_timer(0.5),"timeout")
+		get_parent().get_parent().add_child(quesontasma)
+		quesontasma.direction = last_motion
+		quesontasma.global_position.y = global_position.y - 40
+		quesontasma.global_position.x = global_position.x + 60 * last_motion
+		yield(get_tree().create_timer(0.5),"timeout")
+		$Side.set_deferred("enabled", true)
+		$Cliff.set_deferred("enabled", true)
+		$Jumpside.set_deferred("enabled", true)
+		$Jumpup.set_deferred("enabled", true)
+		stop = false
+		x_input = last_motion
+		$BulletTimer.start()
+	else:
+		$BulletTimer.start()
 
 # warning-ignore:unused_argument
 func _on_DamageArea_area_entered(area):
@@ -81,7 +95,7 @@ func _on_DamageArea_area_entered(area):
 		$InmunityTimer.start()
 	else:
 		var dead = Death.instance()
-		get_parent().add_child(dead)
+		get_parent().get_parent().add_child(dead)
 		dead.scale.x = scale.x
 		dead.global_position.x = global_position.x
 		dead.global_position.y = global_position.y - 40
@@ -92,3 +106,8 @@ func _on_InmunityTimer_timeout():
 	inmunity = false
 	$AnimatedSprite.modulate = Color(1, 1, 1, 1)
 	$DamageArea/CollisionShape2D.set_deferred("disabled", false)
+
+
+# warning-ignore:unused_argument
+func _on_FallArea_area_entered(area):
+	queue_free()

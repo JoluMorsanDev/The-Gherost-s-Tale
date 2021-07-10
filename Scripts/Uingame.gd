@@ -20,6 +20,7 @@ func _ready():
 	$Hearts/Heart3Base/Damage.stop()
 	$Hearts/Heart1Base/Damage.hide()
 	$Pause/Coins.rect_position.y = 150
+	$Pause/EnemiesLeft.rect_position.y = 150
 	$Pause.rect_position.x = 0
 	$Pause/SoundButton/HSlider.hide()
 	$PauseBackground.hide()
