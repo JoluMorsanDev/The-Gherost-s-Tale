@@ -10,12 +10,12 @@ var hshaking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node_or_null("Player").global_position = $SpawnPos.position
-	$Camera2D/MessageScreen/Message.text = "Level 1"
+	$Camera2D/MessageScreen/Message.text = "Tutorial"
 	$Music/Music/LevelMusic.play()
 	$Camera2D/Uingame/Pause/SfxButton/HSlider.value = MusicSingletone.sfxvolume
 	$Camera2D/Uingame/Pause/SoundButton/HSlider.value = MusicSingletone.musicvolume
 	$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
-	$Camera2D/Uingame/Pause/LevelMessage.text = "Lvl 1"
+	$Camera2D/Uingame/Pause/LevelMessage.text = "Tuto"
 	show_level()
 
 # warning-ignore:unused_argument
@@ -144,6 +144,7 @@ func _on_Player_fall():
 		game_over()
 
 func game_over():
+	$Npcs.hide()
 	$Music/Music/LevelMusic.stop()
 	$Music/Music/GameOverMusic.play()
 	$Camera2D/MessageScreen.rect_scale.x = 1
@@ -155,9 +156,10 @@ func game_over():
 	LevelsSingleton.levelsunlocked = 0
 	LevelsSingleton.save_levels_unlocked()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	get_tree().reload_current_scene()
 
 func win():
+	$Npcs.hide()
 	$Music/Music/LevelMusic.stop()
 	$Music/Music/WinMusic.play()
 	$Camera2D/MessageScreen.rect_scale.x = 1
@@ -166,10 +168,10 @@ func win():
 	get_tree().paused = true
 	yield(get_tree().create_timer(3),"timeout")
 	get_tree().paused = false
-	LevelsSingleton.levelsunlocked = 1
-	LevelsSingleton.save_levels_unlocked()
+	LevelsSingleton.firsttimeplaying = false
+	LevelsSingleton.save_first_time()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Levels/Level2.tscn")
+	get_tree().change_scene("res://Scenes/Level1.tscn")
 
 func show_level():
 	get_tree().paused = true

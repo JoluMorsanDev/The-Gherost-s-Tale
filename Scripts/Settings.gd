@@ -58,4 +58,5 @@ func _on_HSlider_value_changedsfx(value):
 func _on_DeleteDataButton_pressed():
 	MusicSingletone.buttonsfxplay()
 	MusicSingletone.earse_data()
+	LevelsSingleton.earse_data()
 	get_tree().quit()

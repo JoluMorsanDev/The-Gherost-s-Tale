@@ -4,13 +4,28 @@ extends Node2D
 func _ready():
 	$PortadaByMaetschl/AnimationPlayer.play("Normal")
 	MusicSingletone.mainthememusicstart()
+	if LevelsSingleton.firsttimeplaying == true:
+		$PortadaByMaetschl/Label.text = "tutorial"
+	else:
+		if LevelsSingleton.levelsunlocked == 0:
+			$PortadaByMaetschl/Label.text = "level 1"
+		elif LevelsSingleton.levelsunlocked == 1:
+			$PortadaByMaetschl/Label.text = "level 2"
 
 func _on_Play_pressed():
 	MusicSingletone.buttonsfxplay()
 	MusicSingletone.mainthememusicstop()
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Level1.tscn")
 	MusicSingletone.soundingresion = true
+	if LevelsSingleton.firsttimeplaying == true:
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Scenes/Levels/Tuto.tscn")
+	else:
+		if LevelsSingleton.levelsunlocked == 0:
+# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://Scenes/Level1.tscn")
+		elif LevelsSingleton.levelsunlocked == 1:
+# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://Scenes/Levels/Level2.tscn")
 
 func _on_Exit_pressed():
 	MusicSingletone.buttonsfxplay()

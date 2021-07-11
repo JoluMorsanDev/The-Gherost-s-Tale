@@ -433,12 +433,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hearts" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Hearts" type="Node2D" parent="."]
 
 [node name="Heart1Base" type="Sprite" parent="Hearts"]
 material = SubResource( 1 )
@@ -512,7 +507,7 @@ __meta__ = {
 use_parent_material = true
 position = Vector2( 84, 102 )
 frames = SubResource( 13 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Label" type="Label" parent="Pause/Coins"]

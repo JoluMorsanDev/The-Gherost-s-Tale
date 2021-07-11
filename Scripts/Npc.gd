@@ -15,6 +15,22 @@ var life = 2
 var stop = false
 var lastx
 export var dialog = ""
+export var talking = true
+export var movable = true
+
+func _ready():
+	randomize()
+	var npc_types = $Flip/AnimatedSprite.frames.get_animation_names()
+	$Flip/AnimatedSprite.animation = npc_types[randi() % npc_types.size()]
+	$Control/Label.text = str(dialog)
+	if movable == true:
+		$BehaivorChangeTimer.start()
+	else:
+		x_input = 0
+	if talking == false:
+		$Area2D/CollisionShape2D.disabled = true
+	else:
+		$Area2D/CollisionShape2D.disabled = false
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -28,6 +44,8 @@ func _physics_process(delta):
 		motion.x += x_input * aceleration * delta
 		motion.x = clamp(motion.x, -max_speed, max_speed)
 		$Flip/AnimatedSprite.playing = true
+		if $Control.visible == true:
+			$Control/AnimationPlayer.play("hide")
 	if x_input == 0 or !is_on_floor():
 		$Flip/AnimatedSprite.playing = false
 		$Flip/AnimatedSprite.frame = 0
@@ -53,13 +71,39 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2.UP)
 # warning-ignore:unused_argument
 func _on_Area2D_body_entered(body):
-	stop = true
-	lastx = x_input
-	x_input = 0
-	$Control/AnimationPlayer.play("show")
+	if stop == false:
+		stop = true
+		lastx = x_input
+		x_input = 0
+		$Control/AnimationPlayer.play("show")
 
 # warning-ignore:unused_argument
 func _on_Area2D_body_exited(body):
-	$Control/AnimationPlayer.play("hide")
-	stop = false
-	x_input = lastx
+	if stop == true:
+		$Control/AnimationPlayer.play("hide")
+		stop = false
+		x_input = lastx
+
+
+func _on_BehaivorChangeTimer_timeout():
+	$BehaivorChangeTimer.wait_time = rand_range(1, 4)
+	if stop == false:
+		var chance = rand_range(0,10)
+		if chance <= 5:
+			x_input = -x_input
+			$Flip.scale.x = -$Flip.scale.x
+			$BehaivorChangeTimer.start()
+		elif chance > 5:
+			stop = true
+			lastx = x_input
+			x_input = 0
+			yield(get_tree().create_timer(1),"timeout")
+			stop = false
+			if stop == false:
+				$Flip.scale.x = -$Flip.scale.x
+				x_input = -lastx
+				$BehaivorChangeTimer.start()
+	else:
+		stop = false
+		x_input = lastx
+		$BehaivorChangeTimer.start()

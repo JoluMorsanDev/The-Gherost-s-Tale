@@ -13,137 +13,137 @@
 [ext_resource path="res://Assets/Sprites/DialogBox.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=12]
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.5, 25 )
 
-[sub_resource type="CircleShape2D" id=22]
+[sub_resource type="CircleShape2D" id=2]
 radius = 20.0
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 80, 90 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 4 )
-region = Rect2( 80, 0, 80, 90 )
-
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 6 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 8 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 9 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 4 )
 region = Rect2( 80, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 6 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 80, 90 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 6 )
+atlas = ExtResource( 1 )
 region = Rect2( 80, 0, 80, 90 )
 
-[sub_resource type="SpriteFrames" id=20]
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 80, 90 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 7 )
+region = Rect2( 80, 0, 80, 90 )
+
+[sub_resource type="SpriteFrames" id=22]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "New Anim 2",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "New Anim 6",
+"name": "New Anim",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
-"name": "New Anim 7",
+"name": "New Anim 4",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
-"name": "New Anim 5",
+"name": "New Anim 3",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
-"name": "New Anim 3",
+"name": "New Anim 1",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
-"name": "New Anim 4",
+"name": "New Anim 5",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
-"name": "New Anim 1",
+"name": "New Anim 8",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
-"name": "New Anim 8",
+"name": "New Anim 2",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
-"name": "New Anim",
+"name": "New Anim 7",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "New Anim 6",
 "speed": 5.0
 } ]
 
-[sub_resource type="CanvasItemMaterial" id=23]
-blend_mode = 1
+[sub_resource type="CanvasItemMaterial" id=28]
+light_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id=24]
 blend_mode = 1
@@ -215,21 +215,21 @@ script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -25 )
-shape = SubResource( 21 )
+shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -20 )
-shape = SubResource( 22 )
+shape = SubResource( 2 )
 
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Flip"]
-material = SubResource( 1 )
+material = SubResource( 3 )
 position = Vector2( 0, -45 )
-frames = SubResource( 20 )
+frames = SubResource( 22 )
 animation = "New Anim"
 frame = 1
 playing = true
@@ -268,7 +268,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
-material = SubResource( 23 )
+material = SubResource( 28 )
 margin_left = -485.0
 margin_top = -480.167
 margin_right = 485.0
@@ -281,13 +281,14 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Control"]
 material = SubResource( 24 )
-margin_left = -405.455
-margin_top = -451.87
-margin_right = 154.545
-margin_bottom = -408.87
+margin_left = -405.0
+margin_top = -452.0
+margin_right = 393.0
+margin_bottom = -164.0
 custom_fonts/font = SubResource( 25 )
 custom_colors/font_color = Color( 0.639216, 0.901961, 0.835294, 1 )
 text = "Hello this is a test"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -296,5 +297,10 @@ __meta__ = {
 anims/hide = SubResource( 26 )
 anims/show = SubResource( 27 )
 
+[node name="BehaivorChangeTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="BehaivorChangeTimer" to="." method="_on_BehaivorChangeTimer_timeout"]
