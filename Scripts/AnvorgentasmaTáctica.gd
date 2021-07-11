@@ -84,6 +84,7 @@ func _on_BulletTimer_timeout():
 
 # warning-ignore:unused_argument
 func _on_DamageArea_area_entered(area):
+	$DamageSound.play()
 	if life > 1:
 		life -= 1
 # warning-ignore:integer_division

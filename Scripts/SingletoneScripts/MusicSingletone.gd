@@ -2,9 +2,16 @@ extends Node
 
 var musicvolume
 var sfxvolume
-var mainthememusic = AudioStreamPlayer2D.new()
-var mainthememusicsound = load("res://Assets/MusicAndSounds/WelcomeToTheCastlebySleider.wav")
+var mainthememusic = AudioStreamPlayer.new()
+var mainthememusicsound = load("res://Assets/MusicAndSounds/MainThemebySleider.wav")
+var cutscenemusic = AudioStreamPlayer.new()
+var cutscenemusicsound = load("res://Assets/MusicAndSounds/IntroCutscenebyRiobruto.wav")
+var coinsfx = AudioStreamPlayer.new()
+var coinsfxsound = load("res://Assets/MusicAndSounds/coin.wav")
+var buttonsfx = AudioStreamPlayer.new()
+var buttonsfxsound = load("res://Assets/MusicAndSounds/button.wav")
 var soundingresion = true
+var soundingresion2 = true
 var volumemusicfile = "user://volumemusic.save"
 var volumesfxfile = "user://volumesfx.save"
 
@@ -12,8 +19,17 @@ func _ready():
 	load_music_volume()
 	load_sfx_volume()
 	add_child(mainthememusic)
+	add_child(cutscenemusic)
+	add_child(coinsfx)
+	add_child(buttonsfx)
 	mainthememusic.stream = mainthememusicsound
+	cutscenemusic.stream = cutscenemusicsound
+	coinsfx.stream = coinsfxsound
+	buttonsfx.stream = buttonsfxsound
 	mainthememusic.bus = "Music"
+	cutscenemusic.bus = "Music"
+	coinsfx.bus = "Sfx"
+	buttonsfx.bus = "Sfx"
 
 func mainthememusicstart():
 	if soundingresion == true:
@@ -22,6 +38,20 @@ func mainthememusicstart():
 
 func mainthememusicstop():
 	mainthememusic.stop()
+
+func cutscenemusicstart():
+	if soundingresion2 == true:
+			cutscenemusic.play()
+			soundingresion2 = false
+
+func cutscenethememusicstop():
+	cutscenemusic.stop()
+
+func coinsfxplay():
+	coinsfx.play()
+
+func buttonsfxplay():
+	buttonsfx.play()
 
 func change_music_volume():
 	if musicvolume > -24:

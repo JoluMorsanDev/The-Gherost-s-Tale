@@ -47,6 +47,7 @@ func _physics_process(delta):
 
 # warning-ignore:unused_argument
 func _on_DamageArea_area_entered(area):
+	$DamageSound.play()
 	if life > 1:
 		life -= 1
 # warning-ignore:integer_division
@@ -71,6 +72,3 @@ func _on_InmunityTimer_timeout():
 	$DamageArea/CollisionShape2D.set_deferred("disabled", false)
 
 
-# warning-ignore:unused_argument
-func _on_FallArea_area_entered(area):
-	queue_free()

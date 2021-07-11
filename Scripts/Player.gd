@@ -59,6 +59,7 @@ func _physics_process(delta):
 			motion.x = lerp(motion.x, 0, air_friction)
 			
 	if Input.is_action_just_pressed("claws") and claws_cooldown == false and inmunity == false:
+		$ClawsSound.play()
 		claws_cooldown = true
 		$ClawsCooldown.start()
 		var claws = Claws.instance()

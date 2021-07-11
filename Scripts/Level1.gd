@@ -22,7 +22,7 @@ func _process(delta):
 	if $Enemies.get_child_count() > 0:
 		$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
 	if $Enemies.get_child_count() == 0:
-		if wining == false:
+		if wining == false and life > 0:
 			$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
 			wining = true
 			get_node_or_null("Player").movement_block_win()
@@ -46,7 +46,7 @@ func _process(delta):
 		$Camera2D/Uingame/Hearts/Heart1Base/Heart.hide()
 		$Camera2D/Uingame/Hearts/Heart2Base/Heart.hide()
 		$Camera2D/Uingame/Hearts/Heart3Base/Heart.hide()
-		if death == false:
+		if death == false and wining == false:
 			$Music/Music/LevelMusic.stop()
 			death = true
 			get_node_or_null("Player").movement_block_loss()
@@ -82,6 +82,8 @@ func _on_Player_heal():
 func _on_Player_coin():
 	coins += 1
 	$Camera2D/Uingame/Pause/Coins/Label.text = str(coins)
+	$Music/Sfx/CoinSfx.play()
+	MusicSingletone.coinsfxplay()
 
 func cameraup():
 	if shaking == true:
@@ -138,21 +140,23 @@ func _on_Player_fall():
 		game_over()
 
 func game_over():
+	$Music/Music/GameOverMusic.play()
 	$Camera2D/MessageScreen.rect_scale.x = 1
 	$Camera2D/MessageScreen/Message.text = "Game\nover"
 	$Camera2D/MessageScreen/AnimationPlayer.play("show")
 	get_tree().paused = true
-	yield(get_tree().create_timer(2),"timeout")
+	yield(get_tree().create_timer(5),"timeout")
 	get_tree().paused = false
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func win():
+	$Music/Music/WinMusic.play()
 	$Camera2D/MessageScreen.rect_scale.x = 1
 	$Camera2D/MessageScreen/Message.text = "Level\nwon"
 	$Camera2D/MessageScreen/AnimationPlayer.play("show")
 	get_tree().paused = true
-	yield(get_tree().create_timer(2),"timeout")
+	yield(get_tree().create_timer(3),"timeout")
 	get_tree().paused = false
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
@@ -162,4 +166,5 @@ func show_level():
 	yield(get_tree().create_timer(1),"timeout")
 	get_tree().paused = false
 	$Camera2D/MessageScreen/AnimationPlayer.play("hide")
+	yield(get_tree().create_timer(1),"timeout")
 	$Camera2D/MessageScreen.rect_scale.x = 0

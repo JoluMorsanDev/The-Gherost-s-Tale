@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Anvorgentasma.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Hamborguetasma.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/AnvorguetasmaDeath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/MusicAndSounds/hit.wav" type="AudioStream" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -93,6 +94,10 @@ shape = SubResource( 7 )
 [node name="InmunityTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sfx"
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_DamageArea_area_entered"]
 [connection signal="area_entered" from="FallArea" to="." method="_on_FallArea_area_entered"]

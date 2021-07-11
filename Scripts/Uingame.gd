@@ -49,6 +49,7 @@ func _on_Damage_animation_finished3():
 
 # warning-ignore:unused_argument
 func _on_PausePlay_toggled(button_pressed):
+	MusicSingletone.buttonsfxplay()
 	if $Buttons/PausePlay.pressed == true:
 		$Pause/AnimationPlayer.play("Pause")
 		get_tree().paused = true
@@ -63,6 +64,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 # warning-ignore:unused_argument
 func _on_SoundButton_toggled(button_pressed):
+	MusicSingletone.buttonsfxplay()
 	if $Pause/SoundButton.pressed == true:
 		$Pause/SoundButton/AnimationPlayer.play("Show")
 	else:
@@ -80,6 +82,7 @@ func _on_HSlider_value_changed(value):
 
 # warning-ignore:unused_argument
 func _on_SfxButton_toggled(button_pressed):
+	MusicSingletone.buttonsfxplay()
 	if $Pause/SfxButton.pressed == true:
 		$Pause/SfxButton/AnimationPlayer.play("Show")
 	else:
@@ -96,4 +99,5 @@ func _on_HSlider_value_changedsfx(value):
 		$Pause/SfxButton.texture_normal = nonsfx
 
 func _on_Home_pressed():
+	MusicSingletone.buttonsfxplay()
 	emit_signal("home")

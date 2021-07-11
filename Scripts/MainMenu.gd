@@ -6,18 +6,22 @@ func _ready():
 	MusicSingletone.mainthememusicstart()
 
 func _on_Play_pressed():
+	MusicSingletone.buttonsfxplay()
 	MusicSingletone.mainthememusicstop()
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/Level1.tscn")
 	MusicSingletone.soundingresion = true
 
 func _on_Exit_pressed():
+	MusicSingletone.buttonsfxplay()
 	get_tree().quit()
 
 func _on_Credits_pressed():
+	MusicSingletone.buttonsfxplay()
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/Credits.tscn")
 
 func _on_Settings_pressed():
+	MusicSingletone.buttonsfxplay()
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/Settings.tscn")

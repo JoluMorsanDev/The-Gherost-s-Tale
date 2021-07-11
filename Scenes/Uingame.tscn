@@ -425,6 +425,7 @@ __meta__ = {
 
 [node name="PauseBackground" type="ColorRect" parent="."]
 pause_mode = 2
+visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
 color = Color( 0.239216, 0.239216, 0.239216, 0.717647 )
@@ -492,8 +493,7 @@ frames = SubResource( 7 )
 
 [node name="Pause" type="Control" parent="."]
 pause_mode = 2
-margin_left = 426.0
-margin_right = 466.0
+margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -501,8 +501,9 @@ __meta__ = {
 
 [node name="Coins" type="Control" parent="Pause"]
 material = SubResource( 8 )
+margin_top = 150.0
 margin_right = 40.0
-margin_bottom = 40.0
+margin_bottom = 190.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -688,7 +689,7 @@ margin_bottom = 175.735
 toggle_mode = true
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
-texture_disabled = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

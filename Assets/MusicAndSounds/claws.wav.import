@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/claws.wav-ba5ff05e72d1ea35d9012106ef1a41bf.sample"
+
+[deps]
+
+source_file="res://Assets/MusicAndSounds/claws.wav"
+dest_files=[ "res://.import/claws.wav-ba5ff05e72d1ea35d9012106ef1a41bf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

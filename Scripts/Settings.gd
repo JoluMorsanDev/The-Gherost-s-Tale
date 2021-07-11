@@ -12,11 +12,13 @@ func _ready():
 	$Buttons/SfxButton/HSlider.value = MusicSingletone.sfxvolume
 
 func _on_Back_pressed():
+	MusicSingletone.buttonsfxplay()
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 # warning-ignore:unused_argument
 func _on_SoundButton_toggled(button_pressed):
+	MusicSingletone.buttonsfxplay()
 	if $Buttons/SoundButton.pressed == true:
 		$Buttons/SoundButton/AnimationPlayer.play("Show")
 	else:
@@ -24,6 +26,7 @@ func _on_SoundButton_toggled(button_pressed):
 
 # warning-ignore:unused_argument
 func _on_SfxButton_toggled(button_pressed):
+	MusicSingletone.buttonsfxplay()
 	if $Buttons/SfxButton.pressed == true:
 		$Buttons/SfxButton/AnimationPlayer.play("Show")
 	else:
@@ -53,5 +56,6 @@ func _on_HSlider_value_changedsfx(value):
 
 
 func _on_DeleteDataButton_pressed():
+	MusicSingletone.buttonsfxplay()
 	MusicSingletone.earse_data()
 	get_tree().quit()
