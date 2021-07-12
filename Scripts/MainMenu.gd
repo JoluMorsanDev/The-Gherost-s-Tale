@@ -11,6 +11,8 @@ func _ready():
 			$PortadaByMaetschl/Label.text = "level 1"
 		elif LevelsSingleton.levelsunlocked == 1:
 			$PortadaByMaetschl/Label.text = "level 2"
+		elif LevelsSingleton.levelsunlocked == 2:
+			$PortadaByMaetschl/Label.text = "level 3"
 
 func _on_Play_pressed():
 	MusicSingletone.buttonsfxplay()
@@ -26,6 +28,9 @@ func _on_Play_pressed():
 		elif LevelsSingleton.levelsunlocked == 1:
 # warning-ignore:return_value_discarded
 			get_tree().change_scene("res://Scenes/Levels/Level2.tscn")
+		elif LevelsSingleton.levelsunlocked == 2:
+# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://Scenes/Levels/Level3.tscn")
 
 func _on_Exit_pressed():
 	MusicSingletone.buttonsfxplay()

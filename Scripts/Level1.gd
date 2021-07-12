@@ -49,6 +49,8 @@ func _process(delta):
 		$Camera2D/Uingame/Hearts/Heart3Base/Heart.hide()
 		if death == false and wining == false:
 			$Music/Music/LevelMusic.stop()
+			LevelsSingleton.levelsunlocked = 0
+			LevelsSingleton.save_levels_unlocked()
 			death = true
 			get_node_or_null("Player").movement_block_loss()
 			yield(get_tree().create_timer(1),"timeout")
@@ -128,6 +130,8 @@ func _on_Uingame_home():
 
 func _on_Player_fall():
 	if wining == false and death == false:
+		LevelsSingleton.levelsunlocked = 0
+		LevelsSingleton.save_levels_unlocked()
 		get_node_or_null("Player").movement_block()
 		$Music/Sfx/HurtSfx.play()
 		$Music/Music/LevelMusic.stop()
@@ -152,8 +156,6 @@ func game_over():
 	get_tree().paused = true
 	yield(get_tree().create_timer(5),"timeout")
 	get_tree().paused = false
-	LevelsSingleton.levelsunlocked = 0
-	LevelsSingleton.save_levels_unlocked()
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 

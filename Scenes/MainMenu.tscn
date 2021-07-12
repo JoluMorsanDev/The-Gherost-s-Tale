@@ -33,14 +33,14 @@ tracks/0/keys = {
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -424.309, -304.154, -424.672, -295.441, -464.242, -283.825, -475.133, -245.344, -483.846, -245.344, -484.427, 244.578, -475.714, 244.578, -464.46, 283.059, -425.979, 294.313, -425.397, 304.71, 425.471, 304.388, 424.607, 295.322, 463.462, 274.599, 485.047, 243.947, 484.656, -244.074, 465.66, -245.369, 454.867, -274.726, 425.942, -295.016, 426.374, -304.946 )
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=5]
 size = 128
 font_data = ExtResource( 9 )
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
 
 [node name="MainMenu" type="Node2D"]
@@ -94,12 +94,12 @@ position = Vector2( 255.61, -157.055 )
 scale = Vector2( 3.07692, 3.07692 )
 
 [node name="Label" type="Label" parent="PortadaByMaetschl"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 margin_left = -268.259
 margin_top = 312.032
 margin_right = 309.741
 margin_bottom = 398.032
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.772549, 0.921569, 0.937255, 1 )
 text = "Tutorial"
 align = 1
@@ -117,7 +117,7 @@ __meta__ = {
 }
 
 [node name="Play" type="TextureButton" parent="Buttons"]
-material = SubResource( 4 )
+material = SubResource( 6 )
 margin_left = 700.0
 margin_top = 545.0
 margin_right = 860.0
@@ -128,7 +128,7 @@ __meta__ = {
 }
 
 [node name="Settings" type="TextureButton" parent="Buttons"]
-material = SubResource( 4 )
+material = SubResource( 6 )
 margin_left = 440.0
 margin_top = 545.0
 margin_right = 600.0
@@ -139,7 +139,7 @@ __meta__ = {
 }
 
 [node name="Credits" type="TextureButton" parent="Buttons"]
-material = SubResource( 4 )
+material = SubResource( 6 )
 margin_left = 1130.49
 margin_top = 575.729
 margin_right = 1290.49
@@ -151,7 +151,7 @@ __meta__ = {
 }
 
 [node name="Exit" type="TextureButton" parent="Buttons"]
-material = SubResource( 4 )
+material = SubResource( 6 )
 margin_left = 36.0
 margin_top = 36.0
 margin_right = 196.0

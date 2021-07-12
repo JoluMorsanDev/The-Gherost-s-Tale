@@ -10,12 +10,12 @@ var hshaking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node_or_null("Player").global_position = $SpawnPos.position
-	$Camera2D/MessageScreen/Message.text = "Level 2"
+	$Camera2D/MessageScreen/Message.text = "Level 3"
 	$Music/Music/LevelMusic.play()
 	$Camera2D/Uingame/Pause/SfxButton/HSlider.value = MusicSingletone.sfxvolume
 	$Camera2D/Uingame/Pause/SoundButton/HSlider.value = MusicSingletone.musicvolume
 	$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
-	$Camera2D/Uingame/Pause/LevelMessage.text = "Lvl 2"
+	$Camera2D/Uingame/Pause/LevelMessage.text = "Lvl 3"
 	show_level()
 
 # warning-ignore:unused_argument
@@ -168,10 +168,10 @@ func win():
 	get_tree().paused = true
 	yield(get_tree().create_timer(3),"timeout")
 	get_tree().paused = false
-	LevelsSingleton.levelsunlocked = 2
+	LevelsSingleton.levelsunlocked = 0
 	LevelsSingleton.save_levels_unlocked()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Levels/Level3.tscn")
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func show_level():
 	get_tree().paused = true

@@ -72,3 +72,6 @@ func _on_InmunityTimer_timeout():
 	$DamageArea/CollisionShape2D.set_deferred("disabled", false)
 
 
+# warning-ignore:unused_argument
+func _on_Area2D_area_entered(area):
+	motion.y = -jump_force
