@@ -21,6 +21,7 @@ signal hit
 signal heal
 signal coin
 signal fall
+signal magma
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -38,8 +39,8 @@ func _physics_process(delta):
 			$AnimatedSprite.frame = 0
 		else:
 			$AnimatedSprite.playing = true
-	if claws_cooldown == true:
-		get_node("claws").scale.x = sprite.scale.x
+	#if claws_cooldown == true:
+		#get_node("claws").scale.x = sprite.scale.x
 	
 	#Put the vector motion y axis in gravity
 	motion.y += gravity * delta
@@ -144,3 +145,7 @@ func movement_block():
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "death":
 		hide()
+
+# warning-ignore:unused_argument
+func _on_Lavaarea_area_entered(area):
+	emit_signal("magma")

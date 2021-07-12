@@ -507,7 +507,7 @@ __meta__ = {
 use_parent_material = true
 position = Vector2( 84, 102 )
 frames = SubResource( 13 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Pause/Coins"]
