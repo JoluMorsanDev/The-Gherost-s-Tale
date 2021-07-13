@@ -1386,7 +1386,6 @@ wait_time = 0.533
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2( 640, 380 )
 current = true
 
