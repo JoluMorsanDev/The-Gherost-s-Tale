@@ -93,8 +93,9 @@ func _on_DamageArea_body_entered(body):
 
 func _on_ClawsCooldown_timeout():
 	get_node("claws").queue_free()
-	claws_cooldown = false
 	$AnimatedSprite.show()
+	yield(get_tree().create_timer(.5), "timeout")
+	claws_cooldown = false
 
 # warning-ignore:unused_argument
 func _on_HealArea_area_entered(area):

@@ -31,7 +31,10 @@ func _physics_process(delta):
 		if position.distance_to(target) > 40:
 			motion = target - position
 		if motion.length() > 0:
-			motion = motion.normalized() * abs(speed) * 2
+			if inmunity == false:
+				motion = motion.normalized() * abs(speed) * 2.5
+			else:
+				motion = motion.normalized() * abs(speed) * 2
 			$AnimatedSprite.speed_scale = 1.5
 		else:
 			$AnimatedSprite.speed_scale = 1
@@ -39,8 +42,7 @@ func _physics_process(delta):
 			scale.x = -1
 		elif target.x - position.x < 0:
 			scale.x = 1
-		if inmunity == false:
-			position += motion * delta
+		position += motion * delta
 		$TurnTimer.stop()
 	elif state == "block":
 		speed = 0

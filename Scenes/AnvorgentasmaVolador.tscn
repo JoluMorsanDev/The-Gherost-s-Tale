@@ -56,7 +56,7 @@ Death = ExtResource( 4 )
 material = SubResource( 1 )
 position = Vector2( 0, -80 )
 frames = SubResource( 8 )
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,7 +74,7 @@ rotation = 1.5708
 shape = SubResource( 9 )
 
 [node name="InmunityTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.35
 
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 3.0
