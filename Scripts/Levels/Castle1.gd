@@ -30,7 +30,7 @@ func _process(delta):
 			get_node_or_null("Player").movement_block_win()
 			yield(get_tree().create_timer(1),"timeout")
 			win()
-	if get_node_or_null("Player").global_position.x > 640 and get_node_or_null("Player").global_position.x < 5900:
+	if get_node_or_null("Player").global_position.x > 640 and get_node_or_null("Player").global_position.x < 9360:
 		$Camera2D.global_position.x = get_node_or_null("Player").global_position.x
 	if life == 3:
 		$Camera2D/Uingame/Hearts/Heart1Base/Heart.show()
