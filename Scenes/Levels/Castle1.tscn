@@ -1,4 +1,4 @@
-[gd_scene load_steps=214 format=2]
+[gd_scene load_steps=215 format=2]
 
 [ext_resource path="res://Assets/Sprites/Tilemapground1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/Tilemapcastle1.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Assets/MusicAndSounds/coin.wav" type="AudioStream" id=16]
 [ext_resource path="res://Assets/MusicAndSounds/losebysleider.wav" type="AudioStream" id=17]
+[ext_resource path="res://Scenes/AnvorgentasmaVolador.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Assets/MusicAndSounds/win.wav" type="AudioStream" id=19]
 
 [sub_resource type="OccluderPolygon2D" id=1]
@@ -1321,7 +1322,7 @@ position = Vector2( 1009.66, 539.827 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="KinematicBody2D" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 888.249, -137.972 )
+position = Vector2( 852.29, 257.581 )
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -1382,6 +1383,7 @@ wait_time = 0.533
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 640, 380 )
 current = true
 
@@ -1430,6 +1432,9 @@ __meta__ = {
 pause_mode = 2
 anims/hide = SubResource( 194 )
 anims/show = SubResource( 195 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1194.59, 396.318 )
 
 [connection signal="coin" from="Player" to="." method="_on_Player_coin"]
 [connection signal="fall" from="Player" to="." method="_on_Player_fall"]

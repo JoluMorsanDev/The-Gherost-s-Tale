@@ -120,6 +120,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	emit_signal("fall")
 
 func movement_block_loss():
+	claws_cooldown = true
 	$AnimatedSprite.animation = "death"
 	$Light2D.enabled = false
 	$DamageArea/CollisionShape2D.set_deferred("disabled", true)
@@ -128,6 +129,7 @@ func movement_block_loss():
 	movement = false
 
 func movement_block_win():
+	claws_cooldown = true
 	$AnimatedSprite.position.y = -70
 	$AnimatedSprite.animation = "win"
 	$AnimatedSprite.playing = true
@@ -148,4 +150,12 @@ func _on_AnimatedSprite_animation_finished():
 
 # warning-ignore:unused_argument
 func _on_Lavaarea_area_entered(area):
+	claws_cooldown = true
+	$AnimatedSprite.animation = "death"
+	$Light2D.enabled = false
+	$DamageArea/CollisionShape2D.set_deferred("disabled", true)
+	$HealArea/CollisionShape2D.set_deferred("disabled", true)
+	$CoinArea/CollisionShape2D.set_deferred("disabled", true)
+	$Lavaarea/CollisionShape2D.set_deferred("disabled", true)
+	movement = false
 	emit_signal("magma")

@@ -110,7 +110,7 @@ func _on_ScreenShakeTimer_timeout():
 	shaking = false
 	$Camera2D.global_position.y = 360
 	$Camera2D.global_rotation_degrees = 0
-	$CanvasModulate.color = Color(.03, .17, .29, 1)
+	$CanvasModulate.color = Color(.4, .35, .42, 1)
 
 func _on_Uingame_changesound():
 	MusicSingletone.musicvolume =$Camera2D/Uingame/Pause/SoundButton/HSlider.value 
@@ -144,7 +144,7 @@ func _on_Player_fall():
 		shaking = false
 		$Camera2D.global_position.y = 360
 		$Camera2D.global_rotation_degrees = 0
-		$CanvasModulate.color = Color(.03, .17, .29, 1)
+		$CanvasModulate.color = Color(.4, .35, .42, 1)
 		yield(get_tree().create_timer(0.467),"timeout")
 		game_over()
 
@@ -202,9 +202,21 @@ func _on_HealShakeTimer_timeout():
 	$Camera2D/Uingame/Hearts.global_rotation_degrees = 0
 
 func _on_Player_magma():
-	life = 0
-	$Music/Sfx/HurtSfx.play()
-	$ScreenShakeTimer.start()
-	shaking = true
-	cameradown()
-	$CanvasModulate.color = Color(.9, .15, .15, 1)
+	if death == false and wining == false:
+		$Player.inmunity = true
+		LevelsSingleton.levelsunlocked = 0
+		LevelsSingleton.save_levels_unlocked()
+		$Player.movement_block_loss()
+		$Music/Sfx/HurtSfx.play()
+		$Music/Music/LevelMusic.stop()
+		shaking = true
+		cameradown()
+		$CanvasModulate.color = Color(.9, .15, .15, 1)
+		death = true
+		yield(get_tree().create_timer(0.533),"timeout")
+		shaking = false
+		$Camera2D.global_position.y = 360
+		$Camera2D.global_rotation_degrees = 0
+		$CanvasModulate.color = Color(.4, .35, .42, 1)
+		yield(get_tree().create_timer(0.467),"timeout")
+		game_over()
