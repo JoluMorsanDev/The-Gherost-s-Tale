@@ -1324,6 +1324,9 @@ position = Vector2( 1009.66, 539.827 )
 [node name="KinematicBody2D" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 852.29, 257.581 )
 
+[node name="KinematicBody2D2" parent="Enemies" instance=ExtResource( 18 )]
+position = Vector2( 1194.59, 396.318 )
+
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Music" type="Node2D" parent="."]
@@ -1383,7 +1386,6 @@ wait_time = 0.533
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2( 640, 380 )
 current = true
 
@@ -1432,9 +1434,6 @@ __meta__ = {
 pause_mode = 2
 anims/hide = SubResource( 194 )
 anims/show = SubResource( 195 )
-
-[node name="KinematicBody2D" parent="." instance=ExtResource( 18 )]
-position = Vector2( 1194.59, 396.318 )
 
 [connection signal="coin" from="Player" to="." method="_on_Player_coin"]
 [connection signal="fall" from="Player" to="." method="_on_Player_fall"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Sprites/Hamborguetasma_voladora.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/AnvorgentasmaVolador.gd" type="Script" id=2]
+[ext_resource path="res://Assets/MusicAndSounds/hit.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/AnvorguetasmaDeath2.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -48,6 +50,7 @@ radius = 450.0
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 2 )
+Death = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
@@ -62,6 +65,8 @@ rotation = 1.5708
 shape = SubResource( 9 )
 
 [node name="LifeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LifeArea"]
 position = Vector2( 0, -70 )
@@ -69,12 +74,11 @@ rotation = 1.5708
 shape = SubResource( 9 )
 
 [node name="InmunityTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
-
-[node name="ReactTimer" type="Timer" parent="."]
 
 [node name="GetPosArea" type="Area2D" parent="."]
 visible = false
@@ -85,6 +89,11 @@ collision_mask = 32768
 position = Vector2( 0, -60 )
 shape = SubResource( 10 )
 
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="area_entered" from="LifeArea" to="." method="_on_LifeArea_area_entered"]
+[connection signal="timeout" from="InmunityTimer" to="." method="_on_InmunityTimer_timeout"]
 [connection signal="timeout" from="TurnTimer" to="." method="_on_TurnTimer_timeout"]
 [connection signal="area_entered" from="GetPosArea" to="." method="_on_GetPosArea_area_entered"]
 [connection signal="area_exited" from="GetPosArea" to="." method="_on_GetPosArea_area_exited"]
