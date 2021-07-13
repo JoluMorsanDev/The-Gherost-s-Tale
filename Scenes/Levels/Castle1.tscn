@@ -11,7 +11,7 @@
 [ext_resource path="res://Scenes/LavaBase.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Campfire.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/LavaTop.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Npc.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/MusicAndSounds/heal.wav" type="AudioStream" id=13]
 [ext_resource path="res://Assets/MusicAndSounds/hit.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/Fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=15]
@@ -1772,15 +1772,16 @@ position = Vector2( 8878.79, 720 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.403922, 0.352941, 0.423529, 1 )
 
-[node name="Torches" type="Node2D" parent="."]
-
-[node name="Torch" parent="Torches" instance=ExtResource( 12 )]
-position = Vector2( 149.822, 386.774 )
-
 [node name="Campfires" type="Node2D" parent="."]
 
 [node name="Campfire" parent="Campfires" instance=ExtResource( 10 )]
 position = Vector2( 1009.66, 539.827 )
+
+[node name="Campfire2" parent="Campfires" instance=ExtResource( 10 )]
+position = Vector2( 9600, 620 )
+
+[node name="Campfire3" parent="Campfires" instance=ExtResource( 10 )]
+position = Vector2( 6120, 540 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -1900,6 +1901,10 @@ position = Vector2( 10640, 360 )
 
 [node name="DoorLocked" parent="." instance=ExtResource( 20 )]
 position = Vector2( 9880, 520 )
+
+[node name="Npc" parent="." instance=ExtResource( 12 )]
+position = Vector2( 10957.6, 624.981 )
+dialog = "Lo siento kitty, el jefe está en la siguiente beta"
 
 [connection signal="coin" from="Player" to="." method="_on_Player_coin"]
 [connection signal="fall" from="Player" to="." method="_on_Player_fall"]
