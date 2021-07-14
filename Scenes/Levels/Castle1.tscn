@@ -1,4 +1,4 @@
-[gd_scene load_steps=218 format=2]
+[gd_scene load_steps=219 format=2]
 
 [ext_resource path="res://Assets/Sprites/Tilemapground1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/Tilemapcastle1.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Scenes/DoorLocked.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/AnvorgentasmaSaltarín.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/Anvorgentasma.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=23]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -1827,6 +1828,144 @@ position = Vector2( 5195.44, 465.372 )
 
 [node name="Coins" type="Node2D" parent="."]
 
+[node name="Coin" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 158.891, 189.204 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 152.164, 296.839 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 1258.58, 384.599 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 1370.71, 304.508 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 1480.16, 360.572 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 1781.84, 379.259 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 1899.3, 285.821 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 2038.13, 253.784 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 2369.17, 443.332 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 2267.72, 336.545 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 2158.26, 269.803 )
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 3415.68, 251.115 )
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 3525.14, 251.115 )
+
+[node name="Coin14" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 3637.27, 253.785 )
+
+[node name="Coin15" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 3754.73, 261.794 )
+
+[node name="Coin16" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4758.53, 555.458 )
+
+[node name="Coin17" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4849.3, 552.789 )
+
+[node name="Coin18" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4528.94, 325.866 )
+
+[node name="Coin19" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4406.13, 328.536 )
+
+[node name="Coin20" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4299.35, 323.196 )
+
+[node name="Coin21" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4179.21, 323.196 )
+
+[node name="Coin22" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4825.27, 168.355 )
+
+[node name="Coin23" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 4953.42, 165.685 )
+
+[node name="Coin24" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 5076.22, 168.355 )
+
+[node name="Coin25" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 5207.04, 168.355 )
+
+[node name="Coin26" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 5802.38, 499.395 )
+
+[node name="Coin27" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 5957.22, 496.725 )
+
+[node name="Coin28" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 6280.25, 491.386 )
+
+[node name="Coin29" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 6440.43, 486.047 )
+
+[node name="Coin30" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 7436.22, 397.947 )
+
+[node name="Coin31" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 7591.06, 291.16 )
+
+[node name="Coin32" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 7740.57, 168.355 )
+
+[node name="Coin33" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 7890.07, 98.9432 )
+
+[node name="Coin34" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 8034.23, 96.2735 )
+
+[node name="Coin35" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 8178.4, 96.2735 )
+
+[node name="Coin36" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 8149.03, 566.137 )
+
+[node name="Coin37" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 8247.81, 563.467 )
+
+[node name="Coin38" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 8354.59, 566.137 )
+
+[node name="Coin39" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 8877.85, 470.029 )
+
+[node name="Coin40" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9617.35, 451.341 )
+
+[node name="Coin41" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9489.21, 451.341 )
+
+[node name="Coin42" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9406.45, 323.196 )
+
+[node name="Coin43" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9499.89, 200.391 )
+
+[node name="Coin44" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9612.02, 205.73 )
+
+[node name="Coin45" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9689.44, 315.187 )
+
+[node name="Coin46" parent="Coins" instance=ExtResource( 23 )]
+position = Vector2( 9542.6, 328.536 )
+
 [node name="Music" type="Node2D" parent="."]
 
 [node name="Music" type="Node2D" parent="Music"]
@@ -1884,6 +2023,7 @@ wait_time = 0.533
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 640, 360 )
 current = true
 
@@ -1941,7 +2081,7 @@ position = Vector2( 9880, 520 )
 
 [node name="Npc" parent="." instance=ExtResource( 12 )]
 position = Vector2( 10957.6, 624.981 )
-dialog = "Lo siento kitty, el jefe está en la siguiente beta"
+dialog = "Lo siento kitty, el jefe está en la siguiente demo"
 
 [connection signal="coin" from="Player" to="." method="_on_Player_coin"]
 [connection signal="fall" from="Player" to="." method="_on_Player_fall"]
