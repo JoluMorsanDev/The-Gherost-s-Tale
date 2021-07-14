@@ -168,10 +168,10 @@ func win():
 	get_tree().paused = true
 	yield(get_tree().create_timer(3),"timeout")
 	get_tree().paused = false
-	LevelsSingleton.levelsunlocked = 0
+	LevelsSingleton.levelsunlocked = 3
 	LevelsSingleton.save_levels_unlocked()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene("res://Scenes/Levels/Castle1.tscn")
 
 func show_level():
 	get_tree().paused = true

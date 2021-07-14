@@ -1793,6 +1793,12 @@ position = Vector2( 6120, 540 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="KinematicBody2D5" parent="Enemies" instance=ExtResource( 21 )]
+position = Vector2( 9339.93, 539.916 )
+
+[node name="KinematicBody2D8" parent="Enemies" instance=ExtResource( 22 )]
+position = Vector2( 5195.44, 465.372 )
+
 [node name="KinematicBody2D" parent="Enemies" instance=ExtResource( 21 )]
 position = Vector2( 1055.58, 527.999 )
 
@@ -1804,9 +1810,6 @@ position = Vector2( 5163.77, 188.295 )
 
 [node name="KinematicBody2D4" parent="Enemies" instance=ExtResource( 21 )]
 position = Vector2( 6837.83, 302.075 )
-
-[node name="KinematicBody2D5" parent="Enemies" instance=ExtResource( 21 )]
-position = Vector2( 9339.93, 539.916 )
 
 [node name="KinematicBody2D6" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 1704.58, 529.965 )
@@ -1826,9 +1829,6 @@ position = Vector2( 8672.98, 263.97 )
 
 [node name="KinematicBody2D12" parent="Enemies" instance=ExtResource( 18 )]
 position = Vector2( 4540.55, 247.612 )
-
-[node name="KinematicBody2D8" parent="Enemies" instance=ExtResource( 22 )]
-position = Vector2( 5195.44, 465.372 )
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -2099,6 +2099,7 @@ pause_mode = 2
 pause_mode = 2
 position = Vector2( 10640, 360 )
 collision_layer = 0
+collision_mask = 32768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 pause_mode = 2
@@ -2115,4 +2116,4 @@ shape = SubResource( 196 )
 [connection signal="changesfx" from="Camera2D/Uingame" to="." method="_on_Uingame_changesfx"]
 [connection signal="changesound" from="Camera2D/Uingame" to="." method="_on_Uingame_changesound"]
 [connection signal="home" from="Camera2D/Uingame" to="." method="_on_Uingame_home"]
-[connection signal="area_entered" from="Area2D2" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
