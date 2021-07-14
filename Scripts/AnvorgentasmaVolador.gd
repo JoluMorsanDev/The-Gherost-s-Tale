@@ -71,7 +71,10 @@ func _on_LifeArea_area_entered(area):
 	else:
 		var dead = Death.instance()
 		get_parent().get_parent().add_child(dead)
-		dead.scale.x = scale.x
+		if $AnimatedSprite.flip_h == true:
+			dead.scale.x = -1
+		else:
+			dead.scale.x = 1
 		dead.global_position.x = global_position.x
 		dead.global_position.y = global_position.y - 80
 		queue_free()

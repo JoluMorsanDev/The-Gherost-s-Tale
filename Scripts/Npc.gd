@@ -81,7 +81,6 @@ func _on_Area2D_body_entered(body):
 	lastx = x_input
 	x_input = 0
 	$Control/AnimationPlayer.play("show")
-	$StartWalkingAgainTimer.stop()
 	$BehaivorChangeTimer.stop()
 
 # warning-ignore:unused_argument

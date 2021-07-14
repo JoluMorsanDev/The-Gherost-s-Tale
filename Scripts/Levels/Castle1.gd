@@ -233,12 +233,14 @@ func unlock_boss():
 		boss = true
 		doorrevealed = true
 		$Player.cameramove = true
+		$Music/Music/LevelMusic.pause_mode = 2
 		get_tree().paused = true
 		$NotificationCam.global_position.x = $DoorLocked.position.x
 		$NotificationCam.global_position.y = 360
 		$NotificationCam.current = true
 		$DoorLocked/AnimationPlayer.play("Destroy")
 		yield(get_tree().create_timer(2.5),"timeout")
+		$Music/Music/LevelMusic.pause_mode = 0
 		$Camera2D.current = true
 		$Player.cameramove = false
 		get_tree().paused = false

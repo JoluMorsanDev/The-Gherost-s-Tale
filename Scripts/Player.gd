@@ -24,6 +24,9 @@ signal coin
 signal fall
 signal magma
 
+func _ready():
+	cameramove = false
+
 func _physics_process(delta):
 	#Get the keyboardInput to move x
 	var x_input = Input.get_action_strength("ui_right") -  Input.get_action_strength("ui_left")
