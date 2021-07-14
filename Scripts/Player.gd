@@ -15,6 +15,7 @@ export (PackedScene) var Claws
 var claws_cooldown = false
 var inmunity = false
 var movement = true
+var cameramove = false
 
 #Declare signals
 signal hit
@@ -118,7 +119,8 @@ func _on_CoinArea_area_entered(area):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("fall")
+	if cameramove == false:
+		emit_signal("fall")
 
 func movement_block_loss():
 	claws_cooldown = true

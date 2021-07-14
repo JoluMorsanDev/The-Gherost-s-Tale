@@ -6,6 +6,9 @@ var wining = false
 var coins = 0
 var shaking = false
 var hshaking = false
+var boss = false
+var doorrevealed = false
+var camlimit = 9360
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,16 +24,16 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _process(delta):
+	if boss == true:
+		camlimit = 10640
+	else:
+		camlimit = 9360
 	if $Enemies.get_child_count() > 0:
 		$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
 	if $Enemies.get_child_count() == 0:
-		if wining == false and life > 0:
-			$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
-			wining = true
-			get_node_or_null("Player").movement_block_win()
-			yield(get_tree().create_timer(1),"timeout")
-			win()
-	if get_node_or_null("Player").global_position.x > 640 and get_node_or_null("Player").global_position.x < 9360:
+		if doorrevealed == false:
+			unlock_boss()
+	if get_node_or_null("Player").global_position.x > 640 and get_node_or_null("Player").global_position.x < camlimit:
 		$Camera2D.global_position.x = get_node_or_null("Player").global_position.x
 	if life == 3:
 		$Camera2D/Uingame/Hearts/Heart1Base/Heart.show()
@@ -220,3 +223,34 @@ func _on_Player_magma():
 		$CanvasModulate.color = Color(.4, .35, .42, 1)
 		yield(get_tree().create_timer(0.467),"timeout")
 		game_over()
+
+# warning-ignore:unused_argument
+func _on_Area2D_area_entered(area):
+	$Music/Music/LevelMusic.stop()
+	$Music/Music/BossMusic.play()
+	$Area2D2/CollisionShape2D.set_deferred("disabled", true)
+	boss = true
+	$BossCam.current = true
+
+func unlock_boss():
+	if death == false:
+		boss = true
+		doorrevealed = true
+		$Player.cameramove = true
+		get_tree().paused = true
+		$NotificationCam.global_position.x = $DoorLocked.position.x
+		$NotificationCam.global_position.y = 360
+		$NotificationCam.current = true
+		$DoorLocked/AnimationPlayer.play("Destroy")
+		yield(get_tree().create_timer(2.5),"timeout")
+		$Camera2D.current = true
+		$Player.cameramove = false
+		get_tree().paused = false
+
+func winning():
+	if wining == false and life > 0:
+		$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
+		wining = true
+		get_node_or_null("Player").movement_block_win()
+		yield(get_tree().create_timer(1),"timeout")
+		win()
