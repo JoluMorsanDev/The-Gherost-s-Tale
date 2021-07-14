@@ -33,6 +33,12 @@ func _ready():
 		$Area2D/CollisionShape2D.disabled = false
 
 func _physics_process(delta):
+	if $Control.get_parent().name != "Death":
+		if $Control.rect_global_position.y < 550:
+			$Control.rect_global_position.y += .5
+		else:
+			$Control.rect_global_position.y -= .5
+	
 	#Get the keyboardInput to move x
 	if $Flip/Side.is_colliding():
 		x_input = -x_input
@@ -71,18 +77,19 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2.UP)
 # warning-ignore:unused_argument
 func _on_Area2D_body_entered(body):
-	if stop == false:
-		stop = true
-		lastx = x_input
-		x_input = 0
-		$Control/AnimationPlayer.play("show")
+	stop = true
+	lastx = x_input
+	x_input = 0
+	$Control/AnimationPlayer.play("show")
+	$StartWalkingAgainTimer.stop()
+	$BehaivorChangeTimer.stop()
 
 # warning-ignore:unused_argument
 func _on_Area2D_body_exited(body):
-	if stop == true:
-		$Control/AnimationPlayer.play("hide")
-		stop = false
-		x_input = lastx
+	$Control/AnimationPlayer.play("hide")
+	stop = false
+	x_input = lastx
+	$BehaivorChangeTimer.start()
 
 
 func _on_BehaivorChangeTimer_timeout():
@@ -97,13 +104,11 @@ func _on_BehaivorChangeTimer_timeout():
 			stop = true
 			lastx = x_input
 			x_input = 0
-			yield(get_tree().create_timer(1),"timeout")
-			stop = false
-			if stop == false:
-				$Flip.scale.x = -$Flip.scale.x
-				x_input = -lastx
-				$BehaivorChangeTimer.start()
-	else:
-		stop = false
-		x_input = lastx
-		$BehaivorChangeTimer.start()
+			$StartWalkingAgainTimer.start()
+
+
+func _on_StartWalkingAgainTimer_timeout():
+	stop = false
+	$Flip.scale.x = -$Flip.scale.x
+	x_input = -lastx
+	$BehaivorChangeTimer.start()

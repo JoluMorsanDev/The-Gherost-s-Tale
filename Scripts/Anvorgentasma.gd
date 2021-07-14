@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 #Declare constants
-const aceleration = 3000
-const max_speed = 300
+const aceleration = 2750
+const max_speed = 275
 const friction = .20
 const gravity = 1600
-const jump_force = 600
+const jump_force = 550
 const air_friction = 0.02
 
 #Declare variables

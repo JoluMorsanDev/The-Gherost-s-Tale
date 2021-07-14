@@ -17,7 +17,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 29.0887
+radius = 41.4165
 height = 60.7992
 
 [node name="Claws" type="Area2D"]
@@ -29,7 +29,6 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 position = Vector2( 30, -50 )
 frames = SubResource( 2 )
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

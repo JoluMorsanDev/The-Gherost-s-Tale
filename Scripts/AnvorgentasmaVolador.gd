@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var motion = Vector2()
-var speed = -150
+var speed = -140
 var inmunity = false
 var state = "float"
 var target = Vector2()
@@ -21,27 +21,27 @@ func _physics_process(delta):
 		motion.y = 0
 	if state == "float":
 		motion.x = speed
-		if speed == -150:
-			scale.x = 1
-		elif speed == 150:
-			scale.x = -1
 		motion = move_and_slide(motion, Vector2(0, -1))
+		if speed <= 0:
+			$AnimatedSprite.flip_h = false
+		else:
+			$AnimatedSprite.flip_h = true
 	elif state == "attack":
 		target = player.global_position
 		if position.distance_to(target) > 40:
 			motion = target - position
 		if motion.length() > 0:
 			if inmunity == false:
-				motion = motion.normalized() * abs(speed) * 2.5
-			else:
 				motion = motion.normalized() * abs(speed) * 2
+			else:
+				motion = motion.normalized() * abs(speed) * 1.5
 			$AnimatedSprite.speed_scale = 1.5
 		else:
 			$AnimatedSprite.speed_scale = 1
 		if target.x - position.x > 0:
-			scale.x = -1
+			$AnimatedSprite.flip_h = true
 		elif target.x - position.x < 0:
-			scale.x = 1
+			$AnimatedSprite.flip_h = false
 		position += motion * delta
 		$TurnTimer.stop()
 	elif state == "block":

@@ -158,7 +158,7 @@ func game_over():
 	yield(get_tree().create_timer(5),"timeout")
 	get_tree().paused = false
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene("res://Scenes/Levels/Castle1.tscn")
 
 func win():
 	$Music/Music/LevelMusic.stop()

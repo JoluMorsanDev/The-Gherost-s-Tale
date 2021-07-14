@@ -107,7 +107,7 @@ func _on_ScreenShakeTimer_timeout():
 	shaking = false
 	$Camera2D.global_position.y = 360
 	$Camera2D.global_rotation_degrees = 0
-	$CanvasModulate.color = Color(.03, .17, .29, 1)
+	$CanvasModulate.color =Color(.20, .36, .50, 1)
 
 func _on_Uingame_changesound():
 	MusicSingletone.musicvolume =$Camera2D/Uingame/Pause/SoundButton/HSlider.value 
@@ -139,7 +139,7 @@ func _on_Player_fall():
 		shaking = false
 		$Camera2D.global_position.y = 360
 		$Camera2D.global_rotation_degrees = 0
-		$CanvasModulate.color = Color(.03, .17, .29, 1)
+		$CanvasModulate.color = Color(.20, .36, .50, 1)
 		yield(get_tree().create_timer(0.467),"timeout")
 		game_over()
 

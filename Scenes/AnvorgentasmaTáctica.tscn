@@ -46,6 +46,7 @@ Death = ExtResource( 4 )
 material = SubResource( 1 )
 position = Vector2( 0, -40 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

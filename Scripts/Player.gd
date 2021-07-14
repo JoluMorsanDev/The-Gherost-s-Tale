@@ -85,8 +85,8 @@ func _on_DamageArea_body_entered(body):
 		motion.x = -motion.x
 # warning-ignore:integer_division
 		motion.y = -jump_force/3
-		if claws_cooldown == true:
-			get_node("claws").queue_free()
+		if claws_cooldown == true and get_node_or_null("claws") != null:
+			get_node_or_null("claws").queue_free()
 			$ClawsCooldown.stop()
 			claws_cooldown = false
 			$AnimatedSprite.show()
@@ -94,7 +94,7 @@ func _on_DamageArea_body_entered(body):
 func _on_ClawsCooldown_timeout():
 	get_node("claws").queue_free()
 	$AnimatedSprite.show()
-	yield(get_tree().create_timer(.5), "timeout")
+	yield(get_tree().create_timer(.3), "timeout")
 	claws_cooldown = false
 
 # warning-ignore:unused_argument
