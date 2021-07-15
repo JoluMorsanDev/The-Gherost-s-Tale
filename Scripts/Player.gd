@@ -24,8 +24,8 @@ signal coin
 signal fall
 signal magma
 
-func _ready():
-	cameramove = false
+#func _ready():
+	#cameramove = false
 
 func _physics_process(delta):
 	#Get the keyboardInput to move x
@@ -124,6 +124,8 @@ func _on_CoinArea_area_entered(area):
 func _on_VisibilityNotifier2D_screen_exited():
 	if cameramove == false:
 		emit_signal("fall")
+	else:
+		pass
 
 func movement_block_loss():
 	claws_cooldown = true
@@ -156,12 +158,13 @@ func _on_AnimatedSprite_animation_finished():
 
 # warning-ignore:unused_argument
 func _on_Lavaarea_area_entered(area):
-	claws_cooldown = true
-	$AnimatedSprite.animation = "death"
-	$Light2D.enabled = false
-	$DamageArea/CollisionShape2D.set_deferred("disabled", true)
-	$HealArea/CollisionShape2D.set_deferred("disabled", true)
-	$CoinArea/CollisionShape2D.set_deferred("disabled", true)
-	$Lavaarea/CollisionShape2D.set_deferred("disabled", true)
-	movement = false
-	emit_signal("magma")
+	if get_parent().name == "Castle1":
+		claws_cooldown = true
+		$AnimatedSprite.animation = "death"
+		$Light2D.enabled = false
+		$DamageArea/CollisionShape2D.set_deferred("disabled", true)
+		$HealArea/CollisionShape2D.set_deferred("disabled", true)
+		$CoinArea/CollisionShape2D.set_deferred("disabled", true)
+		$Lavaarea/CollisionShape2D.set_deferred("disabled", true)
+		movement = false
+		emit_signal("magma")

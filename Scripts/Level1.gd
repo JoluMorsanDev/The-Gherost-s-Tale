@@ -17,6 +17,7 @@ func _ready():
 	$Camera2D/Uingame/Pause/EnemiesLeft/Label.text = str($Enemies.get_child_count())
 	$Camera2D/Uingame/Pause/LevelMessage.text = "Lvl 1"
 	show_level()
+	$Player.cameramove = false
 
 # warning-ignore:unused_argument
 func _process(delta):
