@@ -128,7 +128,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 20, 20 )
+extents = Vector2( 25, 20 )
 
 [sub_resource type="CanvasItemMaterial" id=27]
 blend_mode = 1

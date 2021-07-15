@@ -4,7 +4,7 @@ extends KinematicBody2D
 const aceleration = 5000
 const max_speed = 500
 const friction = .20
-const gravity = 1200
+const gravity = 1400
 const jump_force = 900
 const air_friction = 0.02
 
